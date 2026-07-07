@@ -1,0 +1,25 @@
+{
+  "source": {
+    "filename": "hf_20260706_180840_9f34c1ba-0151-43c9-a6b9-7d948e4b0715.mp4",
+    "duration": 5.04,
+    "resolution": "1920x1080",
+    "fps": 24.0,
+    "codec": "h264",
+    "total_source_frames": 121
+  },
+  "frames": {
+    "target_count": 121,
+    "format": "webp",
+    "quality": 55,
+    "naming_pattern": "frame-{NNNN}.webp"
+  },
+  "recommended_scroll_height": "400vh",
+  "created": "2026-07-07T21:41:03",
+  "mobile": {
+    "resolution": "960x540",
+    "actual_count": 121,
+    "total_bytes": 5358118,
+    "avg_frame_bytes": 44281,
+    "total_mb": 5.11
+  }
+}
