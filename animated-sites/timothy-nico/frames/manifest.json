@@ -10,16 +10,30 @@
   "frames": {
     "target_count": 121,
     "format": "webp",
-    "quality": 55,
+    "quality": 90,
+    "quality_ramp": {
+      "description": "Quality varies per frame: baseline 90 everywhere, smoothly eased up to peak_quality at key_frames_1based using a half-cosine ramp of ramp_radius frames on each side.",
+      "baseline_quality": 90,
+      "peak_quality": 100,
+      "key_frames_1based": [1, 61, 121],
+      "ramp_radius": 15
+    },
     "naming_pattern": "frame-{NNNN}.webp"
   },
   "recommended_scroll_height": "400vh",
-  "created": "2026-07-07T21:41:03",
+  "created": "2026-07-26T22:26:00",
+  "desktop": {
+    "resolution": "1920x1080",
+    "actual_count": 121,
+    "total_bytes": 39117798,
+    "avg_frame_bytes": 323288,
+    "total_mb": 37.31
+  },
   "mobile": {
     "resolution": "960x540",
     "actual_count": 121,
-    "total_bytes": 5358118,
-    "avg_frame_bytes": 44281,
-    "total_mb": 5.11
+    "total_bytes": 14276782,
+    "avg_frame_bytes": 117990,
+    "total_mb": 13.62
   }
 }
