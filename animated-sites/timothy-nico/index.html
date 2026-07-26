@@ -1063,10 +1063,9 @@ footer::before {
     <div class="hero-overline">Personal Portfolio</div>
     <h1 class="hero-name" id="hero-name" data-split>Timothy Nico</h1>
     <div class="hero-roles">
-      <!-- TODO: replace with your real roles -->
-      <span>Placeholder Role One</span><span class="sep"></span>
-      <span>Placeholder Role Two</span><span class="sep"></span>
-      <span>Placeholder Role Three</span>
+      <span>AI Engineer</span><span class="sep"></span>
+      <span>Data Scientist</span><span class="sep"></span>
+      <span>Software Engineer</span>
     </div>
     <div class="hero-actions">
       <a class="hero-btn primary" id="btn-resume" download>
@@ -1090,9 +1089,9 @@ footer::before {
   <div class="scroll-text st-vision" data-show-at="0.56" data-hide-at="0.97">
     <div class="beat-par">
     <div class="vision-mark">&ldquo;</div>
-    <div class="vision-quote">Building things that matter, one <span class="hl">idea</span> at a time — from the city that never dims.</div>
+    <div class="vision-quote">Building things that matter, one <span class="hl">idea</span> at a time — from AI chatbots to the web platforms people actually use.</div>
     <div class="vision-divider"></div>
-    <div class="vision-attr">Timothy Nico &mdash; Placeholder Statement</div>
+    <div class="vision-attr">Timothy Nico &mdash; AI &amp; Web Development Enthusiast</div>
     </div>
   </div>
 </div>
@@ -1105,7 +1104,7 @@ footer::before {
   <div class="section-head reveal">
     <div class="overline">Career</div>
     <h2 class="section-title"><span class="lm"><span class="li">Professional <em>Experience</em></span></span></h2>
-    <p class="section-sub">A timeline of the roles that shaped my craft. Placeholder entries — edit the <code style="font-size:12px;color:var(--accent)">EXPERIENCES</code> array in this file to add your own.</p>
+    <p class="section-sub">A timeline of the internships and organizational roles that shaped my craft.</p>
   </div>
   <div class="xp-timeline" id="xp-timeline">
     <div class="xp-line"><div class="xp-line-fill" id="xp-line-fill"></div></div>
@@ -1175,7 +1174,7 @@ footer::before {
   <div class="section-head reveal">
     <div class="overline">Selected Work</div>
     <h2 class="section-title"><span class="lm"><span class="li">Featured <em>Projects</em></span></span></h2>
-    <p class="section-sub">The carousel drifts on its own — hover to pause, drag, swipe, or use the arrows. Placeholder projects — swap the photos, titles and descriptions in the <code style="font-size:12px;color:var(--accent)">PROJECTS</code> array. Add more objects to grow the carousel.</p>
+    <p class="section-sub">The carousel drifts on its own — hover to pause, drag, swipe, or use the arrows.</p>
   </div>
   <div class="rv" id="carousel-shell">
     <div class="carousel-nav">
@@ -1241,127 +1240,157 @@ footer::before {
    constants; the layout updates automatically.
    ================================================================ */
 
-// TODO: replace with your real links. Drop your resume PDF at assets/resume.pdf
 const LINKS = {
-  resume:   'assets/resume.pdf',            // TODO: your resume file
-  github:   '#',                            // TODO: e.g. 'https://github.com/your-username'
-  linkedin: '#',                            // TODO: e.g. 'https://www.linkedin.com/in/your-profile'
-  email:    'your-email@example.com',       // TODO: your contact email
-  music:    'assets/music.mp3',             // TODO: drop an ambient loop here; set to '' to remove the music button
+  resume:   'assets/resume.pdf',
+  github:   'https://github.com/timothynico',
+  linkedin: 'https://www.linkedin.com/in/timothy-nico/',
+  email:    'timothynico171103@gmail.com',
+  music:    '',
 };
 
 // Each experience: { logoText | logoImg, company, role, date, points: [...] }
-// Duplicate an object to add more entries.
 const EXPERIENCES = [
   {
-    logoText: 'C1',
-    company: 'Placeholder Company One',
-    role: 'Placeholder Job Title',
-    date: 'Jan 2024 — Present',
+    logoText: 'GMS',
+    company: 'GMS Church',
+    role: 'Information, Communication, and Technology Intern',
+    date: 'Jan 2025 — Feb 2025',
     points: [
-      'Placeholder description — summarize your main responsibility or impact in one line.',
-      'Placeholder description — a measurable result, e.g. improved X by Y%.',
-      'Placeholder description — a technology, team, or initiative you led.',
+      'Integrated Google Gemini API and Text Embedding API to build an AI chatbot that answers questions accurately using Retrieval-Augmented Generation (RAG) over a knowledge database.',
+      'Developed the chatbot’s knowledge database system with Laravel, React, and Role-Based Access Control for 200+ QnA pairs.',
+      'Managed the Cekat.ai knowledge base and profiling so the chatbot could answer questions, send related PDFs, and hand off to a human agent.',
     ],
   },
   {
-    logoText: 'C2',
-    company: 'Placeholder Company Two',
-    role: 'Placeholder Job Title',
-    date: 'Jun 2022 — Dec 2023',
+    logoText: 'GYB',
+    company: 'GYB Church',
+    role: 'Project Manager — Information System Website',
+    date: 'Feb 2025 — Jul 2025',
     points: [
-      'Placeholder description — summarize your main responsibility or impact in one line.',
-      'Placeholder description — a measurable result, e.g. improved X by Y%.',
+      'Translated client needs into clear technical tasks, keeping communication smooth between client and developers.',
+      'Built user and admin websites for information and content management with Laravel, integrating the user-facing page with the Instagram Graph API for automatic feed display.',
     ],
   },
   {
-    logoText: 'C3',
-    company: 'Placeholder Company Three',
-    role: 'Placeholder Internship / Role',
-    date: 'Jan 2021 — May 2022',
+    logoText: 'OH',
+    company: 'IT Division — OpenHouse 2024, Petra Christian University',
+    role: 'Web Developer',
+    date: 'Jul 2024 — Aug 2024',
     points: [
-      'Placeholder description — summarize your main responsibility or impact in one line.',
-      'Placeholder description — a measurable result, e.g. improved X by Y%.',
+      'Built the registration and payment website for student extracurricular activities using Laravel and Tailwind CSS, serving 1,300+ users.',
+      'Collaborated with teammates on the codebase using GitHub.',
+    ],
+  },
+  {
+    logoText: 'PM',
+    company: 'IT Division — Pemilu Raya (PEMIRA) 2024, Petra Christian University',
+    role: 'Web Developer',
+    date: 'Jan 2024 — Jun 2024',
+    points: [
+      'Built the registration, voting, and quick-count website for university-wide elections across 35 candidates using HTML, CSS, JavaScript, PHP, and SQL.',
+      'Maintained 800+ voting records and other election documents in SQL.',
     ],
   },
 ];
 
 // Technical skills: { icon (short text or emoji), name, label }
 const TECHNICAL_SKILLS = [
-  { icon: '</>', name: 'Placeholder Skill 1', label: 'Expert' },
-  { icon: '{ }', name: 'Placeholder Skill 2', label: 'Advanced' },
-  { icon: '◈',  name: 'Placeholder Skill 3', label: 'Advanced' },
-  { icon: '⌘',  name: 'Placeholder Skill 4', label: 'Proficient' },
-  { icon: '▣',  name: 'Placeholder Skill 5', label: 'Proficient' },
-  { icon: '∿',  name: 'Placeholder Skill 6', label: 'Familiar' },
+  { icon: '</>', name: 'Laravel',       label: 'Advanced' },
+  { icon: '{ }', name: 'Python',        label: 'Advanced' },
+  { icon: '◈',  name: 'TensorFlow',     label: 'Proficient' },
+  { icon: '⌘',  name: 'n8n',            label: 'Proficient' },
+  { icon: '▣',  name: 'Tailwind CSS',   label: 'Advanced' },
+  { icon: '∿',  name: 'SQL',            label: 'Proficient' },
 ];
 
 // Soft skills: { icon (emoji), name, desc }
 const SOFT_SKILLS = [
-  { icon: '🧭', name: 'Placeholder Soft Skill 1', desc: 'One line about how you apply it.' },
-  { icon: '🤝', name: 'Placeholder Soft Skill 2', desc: 'One line about how you apply it.' },
-  { icon: '💡', name: 'Placeholder Soft Skill 3', desc: 'One line about how you apply it.' },
-  { icon: '🎯', name: 'Placeholder Soft Skill 4', desc: 'One line about how you apply it.' },
+  { icon: '🧭', name: 'Communication', desc: 'Translating client and stakeholder needs into clear technical tasks.' },
+  { icon: '🤝', name: 'Team Collaboration', desc: 'Working cross-functionally with developers, clients, and committees.' },
+  { icon: '💡', name: 'Critical Thinking', desc: 'Breaking down ambiguous problems into workable solutions.' },
+  { icon: '🎯', name: 'Decision Making', desc: 'Weighing trade-offs quickly to keep projects moving.' },
 ];
 
 // Languages: { name, level }
 const LANGUAGES = [
-  { name: 'Placeholder Language 1', level: 'Native' },
-  { name: 'Placeholder Language 2', level: 'Fluent' },
-  { name: 'Placeholder Language 3', level: 'Conversational' },
+  { name: 'Indonesian', level: 'Native' },
+  { name: 'English', level: 'Fluent — IELTS 7.5 equivalent' },
 ];
 
 // Education: { logoText | logoImg, school, years, degree, note, ghost (big background text) }
 const EDUCATION = [
   {
-    logoText: 'U1',
-    school: 'Placeholder University',
-    years: '2020 — 2024',
-    degree: 'Placeholder Degree, e.g. B.Sc. Computer Science',
-    note: 'Placeholder note — GPA, honors, thesis topic, or a highlight of your studies.',
+    logoImg: 'assets/images/ntu-logo.png',
+    school: 'National Taiwan University',
+    years: 'Aug 2024 — Dec 2024',
+    degree: 'Visiting Student — IISMA Exchange Program',
+    note: 'GPA 4.23/4.30. Fully-funded Indonesian International Student Mobility Awards (IISMA) 2024 scholarship awardee.',
     ghost: '’24',
   },
   {
-    logoText: 'S1',
-    school: 'Placeholder School / Bootcamp',
-    years: '2017 — 2020',
-    degree: 'Placeholder Program or Diploma',
-    note: 'Placeholder note — focus area, awards, or activities.',
-    ghost: '’20',
+    logoImg: 'assets/images/logo-ukp.png',
+    school: 'Universitas Kristen Petra',
+    years: 'Aug 2022 — Dec 2025',
+    degree: 'B.Sc. Informatics',
+    note: 'GPA 3.94/4.00. Top 10% Freshman of 2022 with Outstanding Academic Achievement.',
+    ghost: '’25',
   },
 ];
 
 // Achievements: { photo, title, year, desc } — photo can be any image path.
-// Odd counts are handled: the final card centers itself automatically.
 const ACHIEVEMENTS = [
   {
-    photo: 'frames/mobile/frame-0025.webp',
-    title: 'Placeholder Achievement One',
+    photo: 'assets/images/piciyu-timothy-nico.png',
+    title: 'Finalist, International UI/UX Competition',
     year: '2025',
-    desc: 'Placeholder description — competition won, certification earned, or recognition received.',
+    desc: 'Top 10 finalist at HackFest UC 2025, an international UI/UX design competition.',
   },
   {
-    photo: 'frames/mobile/frame-0065.webp',
-    title: 'Placeholder Achievement Two',
+    photo: 'assets/images/certificate-iisma.jpg',
+    title: 'IISMA Awardee — National Taiwan University',
     year: '2024',
-    desc: 'Placeholder description — competition won, certification earned, or recognition received.',
+    desc: 'Selected for the Indonesian International Student Mobility Awards, a fully-funded exchange scholarship from Indonesia’s Ministry of Education, Culture, Research and Technology.',
   },
   {
-    photo: 'frames/mobile/frame-0105.webp',
-    title: 'Placeholder Achievement Three',
+    photo: 'assets/images/sertif-ukp.jpg',
+    title: 'Outstanding Academic Achievement',
     year: '2023',
-    desc: 'Placeholder description — competition won, certification earned, or recognition received.',
+    desc: 'Recognized as Top 10% Freshman of 2022 at Universitas Kristen Petra for outstanding academic performance.',
   },
 ];
 
-// Projects: { photo, title, desc, tags: [...] } — duplicate to add more
+// Projects: { photo, title, desc, tags: [...] }
 const PROJECTS = [
-  { photo: 'frames/mobile/frame-0010.webp', title: 'Placeholder Project One',   desc: 'Placeholder description — what it does, the problem it solves, and your role.', tags: ['Tag A', 'Tag B'] },
-  { photo: 'frames/mobile/frame-0030.webp', title: 'Placeholder Project Two',   desc: 'Placeholder description — what it does, the problem it solves, and your role.', tags: ['Tag A', 'Tag B'] },
-  { photo: 'frames/mobile/frame-0050.webp', title: 'Placeholder Project Three', desc: 'Placeholder description — what it does, the problem it solves, and your role.', tags: ['Tag A', 'Tag B'] },
-  { photo: 'frames/mobile/frame-0070.webp', title: 'Placeholder Project Four',  desc: 'Placeholder description — what it does, the problem it solves, and your role.', tags: ['Tag A', 'Tag B'] },
-  { photo: 'frames/mobile/frame-0090.webp', title: 'Placeholder Project Five',  desc: 'Placeholder description — what it does, the problem it solves, and your role.', tags: ['Tag A', 'Tag B'] },
-  { photo: 'frames/mobile/frame-0110.webp', title: 'Placeholder Project Six',   desc: 'Placeholder description — what it does, the problem it solves, and your role.', tags: ['Tag A', 'Tag B'] },
+  {
+    photo: 'assets/images/interview-website.png',
+    title: 'AI Interview Website',
+    desc: 'AI-driven interview evaluation system integrating LLM-based analysis, speech-to-text processing, and video-based confidence assessment to automatically score candidate responses and communication quality.',
+    tags: ['n8n', 'LLM Integration', 'Speech-to-Text'],
+  },
+  {
+    photo: 'assets/images/rbac.png',
+    title: 'RAG Voicebot with Speaker Identification for RBAC',
+    desc: 'RAG-based voicebot using Llama 3, enhanced with speaker identification for secure, role-based access control — recognizing who is speaking and tailoring responses, or denying access, accordingly.',
+    tags: ['RAG LLM', 'Speech-to-Text', 'Speaker Identification'],
+  },
+  {
+    photo: 'assets/images/chess-trainer.png',
+    title: 'AI-Powered Chess Trainer',
+    desc: 'A voice-interactive chess coach pairing Gemini AI with Stockfish — ask questions by speech and get optimal moves and strategic insight based on the current board position.',
+    tags: ['LLM + Tool Use', 'Speech-to-Text', 'Text-to-Speech'],
+  },
+  {
+    photo: 'assets/images/dog-breed.jpg',
+    title: 'Dog Breed Detection with YOLOv8',
+    desc: 'Computer vision project detecting multiple dogs in a single image and classifying 58 different breeds, reaching 83% accuracy.',
+    tags: ['Computer Vision', 'Object Detection'],
+  },
+  {
+    photo: 'assets/images/film2.png',
+    title: 'Film Review & Admin Platform',
+    desc: 'A film review platform with an integrated admin dashboard built with Laravel and Tailwind CSS — users browse and submit reviews while admins manage content and moderation.',
+    tags: ['Laravel', 'Tailwind CSS'],
+  },
 ];
 
 /* ================================================================
