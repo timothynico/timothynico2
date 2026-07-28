@@ -554,11 +554,10 @@ body[data-zone="education"], body[data-zone="contact"] { --amb: rgb(226 165 78);
 }
 
 /* ============================================================
-   SKILLS — classic tech grid / soft skill cards / language ledger
+   SKILLS — icon-badge constellation / scattered language stamps
    ============================================================ */
 .skills-composition {
-  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  grid-auto-rows: min-content; gap: 22px; align-items: stretch;
+  display: flex; flex-direction: column; gap: 22px;
 }
 .sk-panel {
   position: relative; overflow: hidden; padding: 30px;
@@ -566,7 +565,6 @@ body[data-zone="education"], body[data-zone="contact"] { --amb: rgb(226 165 78);
   backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border); border-radius: 22px;
 }
-.sk-tech { grid-column: 1 / -1; }
 .sk-panel-title {
   font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--warm-white-dim);
   display: flex; align-items: center; gap: 16px; margin-bottom: 8px;
@@ -582,83 +580,82 @@ body[data-zone="education"], body[data-zone="contact"] { --amb: rgb(226 165 78);
   pointer-events: none; user-select: none;
 }
 
-/* technical skills: classic 3×2 grid */
-.tech-grid2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 22px; }
-.tech-cell {
-  position: relative; display: flex; align-items: center; gap: 14px;
-  padding: 20px 22px; border-radius: 16px;
-  background: rgba(13,16,26,.5); border: 1px solid var(--glass-border);
-  opacity: 0; transform: translateY(28px) scale(.97);
-  transition: opacity .7s ease, transform .7s var(--ease-out),
-              border-color .35s ease, box-shadow .35s ease, background .35s ease;
+/* technical skills: a constellation of icon badges, not a spreadsheet grid */
+.tech-cluster { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 36px 30px; margin-top: 28px; }
+.tech-badge {
+  display: flex; flex-direction: column; align-items: center; gap: 13px; width: 84px;
+  opacity: 0; transform: translateY(26px) scale(.9);
+  transition: opacity .7s ease, transform .7s var(--ease-out);
   transition-delay: var(--d);
 }
-.sk-tech.in .tech-cell { opacity: 1; transform: none; }
-.tech-cell:hover { border-color: rgba(79,195,247,.4); box-shadow: 0 12px 34px rgba(79,195,247,.12), inset 0 1px 0 rgba(242,244,248,.06); background: rgba(17,22,35,.72); }
-.tech-icon {
-  width: 42px; height: 42px; border-radius: 12px; flex: none;
+/* alternating rhythm — an intentional zigzag rather than a rigid grid */
+.tech-badge:nth-child(even) { margin-top: 32px; }
+.tech-badge:nth-child(3n) { margin-top: 12px; }
+.sk-tech.in .tech-badge { opacity: 1; transform: translateY(0) scale(1); }
+.tech-badge-circle {
+  position: relative; width: 74px; height: 74px; border-radius: 50%; flex: none;
   display: flex; align-items: center; justify-content: center;
-  background: var(--accent-soft); border: 1px solid rgba(79,195,247,.18);
-  color: var(--accent); font-size: 14px; font-weight: 500;
-  transition: background .35s ease, color .35s ease, transform .35s ease;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  transition: transform .5s var(--spring), border-color .35s ease, box-shadow .35s ease, background .35s ease;
 }
-.tech-cell:hover .tech-icon { background: var(--accent); color: #0a0c14; transform: rotate(-6deg) scale(1.06); }
-.tech-body b { display: block; font-size: 15px; font-weight: 500; letter-spacing: .03em; }
-.tech-body i { font-style: normal; display: block; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--mist-dim); margin-top: 3px; }
+.tech-badge-circle::after {
+  content: ''; position: absolute; inset: -7px; border-radius: 50%;
+  border: 1px dashed rgba(242,244,248,.14);
+  transition: border-color .4s ease, transform .7s var(--ease-out);
+}
+.tech-badge:hover .tech-badge-circle { transform: translateY(-5px) rotate(-8deg) scale(1.07); border-color: rgba(79,195,247,.5); box-shadow: 0 16px 38px rgba(79,195,247,.2); background: rgba(242,244,248,.06); }
+.tech-badge:hover .tech-badge-circle::after { border-color: rgba(226,165,78,.45); transform: rotate(28deg); }
+.tech-badge-circle img {
+  width: 36px; height: 36px; object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.35));
+}
+.tech-badge-circle img.crop-top { width: 42px; height: 29px; object-fit: cover; object-position: top; border-radius: 6px; }
+.tech-badge-circle svg { width: 26px; height: 26px; color: var(--accent); }
+.tech-badge-name {
+  font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; text-align: center;
+  color: var(--mist); transition: color .3s ease;
+}
+.tech-badge:hover .tech-badge-name { color: var(--warm-white); }
 
-/* soft skills: 2×2 cards with ghost numerals */
-.soft-grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 22px; }
-.soft-card {
-  position: relative; padding: 20px; border-radius: 16px; overflow: hidden;
-  background: rgba(13,16,26,.5); border: 1px solid var(--glass-border);
-  opacity: 0; transform: translateY(28px);
-  transition: opacity .8s ease, transform .8s var(--ease-out),
+/* languages: scattered wax-seal stamps, not a flat ledger */
+.lang-stamps { display: flex; flex-wrap: wrap; gap: 30px 34px; margin-top: 26px; padding-top: 4px; }
+.lang-stamp {
+  position: relative; width: clamp(180px, 22vw, 216px); padding: 26px 24px 24px;
+  border-radius: 16px; border: 1.5px dashed rgba(226,165,78,.4);
+  background: rgba(13,16,26,.4);
+  opacity: 0; transform: translateY(28px) rotate(var(--r, -4deg)) scale(.93);
+  transition: opacity .8s ease, transform .8s var(--spring),
               border-color .35s ease, background .35s ease, box-shadow .35s ease;
   transition-delay: var(--d);
 }
-.sk-soft.in .soft-card { opacity: 1; transform: none; }
-.soft-card:hover { border-color: rgba(226,165,78,.4); background: rgba(17,22,35,.72); box-shadow: 0 12px 34px rgba(226,165,78,.12), inset 0 1px 0 rgba(242,244,248,.06); }
-.soft-num {
-  position: absolute; top: 8px; right: 12px;
-  font-family: var(--heading); font-style: italic; font-size: 30px;
-  color: transparent; -webkit-text-stroke: 1px rgba(242,244,248,.16);
-  transition: -webkit-text-stroke .3s ease;
+.sk-lang.in .lang-stamp { opacity: 1; transform: rotate(var(--r, -4deg)) scale(1); }
+.lang-stamp:hover {
+  transform: rotate(0deg) scale(1.05) translateY(-6px);
+  border-color: var(--gold); background: rgba(17,22,35,.6);
+  box-shadow: 0 18px 40px rgba(226,165,78,.16);
 }
-.soft-card:hover .soft-num { -webkit-text-stroke: 1px var(--gold); }
-.soft-emoji { font-size: 20px; display: block; margin-bottom: 12px; filter: saturate(.85); }
-/* engine-resolved SVG icons inherit the accent + hover-invert of their cell */
-.tech-icon svg { width: 20px; height: 20px; }
-.soft-emoji svg { width: 22px; height: 22px; color: var(--gold); }
-.tech-icon svg, .soft-emoji svg { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; display: block; }
-.soft-card b { font-size: 15px; font-weight: 500; display: block; margin-bottom: 5px; }
-.soft-card p { font-size: 14px; color: var(--mist); line-height: 1.65; }
+.lang-stamp::after {
+  content: ''; position: absolute; top: 16px; right: 18px;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 12px var(--accent-glow);
+}
+.lang-eyebrow { font-size: 9px; letter-spacing: .32em; text-transform: uppercase; color: var(--mist-dim); margin-bottom: 12px; }
+.lang-name { font-family: var(--heading); font-style: italic; font-weight: 400; font-size: 27px; line-height: 1.08; color: var(--warm-white); margin-bottom: 10px; }
+.lang-level { font-size: 12px; color: var(--mist); line-height: 1.55; }
 
-/* languages: ledger rows with dotted leaders */
-.lang-list { display: flex; flex-direction: column; margin-top: 12px; }
-.lang-item {
-  display: flex; align-items: baseline; gap: 14px; padding: 19px 4px;
-  border-bottom: 1px solid rgba(242,244,248,.05);
-  opacity: 0; transform: translateX(34px);
-  transition: opacity .8s ease, transform .8s var(--ease-out);
-  transition-delay: var(--d);
-}
-.lang-item:last-child { border-bottom: none; }
-.sk-lang.in .lang-item { opacity: 1; transform: translateX(0); }
-.lang-name { font-family: var(--heading); font-size: 20px; font-weight: 400; }
-.lang-lead { flex: 1; border-bottom: 1px dotted rgba(242,244,248,.16); transform: translateY(-4px); }
-.lang-level { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
-
-@media (max-width: 980px) {
-  .skills-composition { grid-template-columns: 1fr; }
-}
 @media (max-width: 768px) {
-  .tech-grid2 { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .tech-cell { padding: 14px; gap: 10px; }
-  .tech-icon { width: 34px; height: 34px; border-radius: 9px; font-size: 12px; }
-  .tech-body b { font-size: 14px; }
-  .soft-grid2 { gap: 10px; }
-  .soft-card { padding: 16px; }
-  .soft-card p { font-size: 14px; }
+  .tech-cluster { gap: 24px 16px; }
+  .tech-badge { width: 68px; gap: 10px; }
+  .tech-badge:nth-child(even), .tech-badge:nth-child(3n) { margin-top: 0; }
+  .tech-badge-circle { width: 60px; height: 60px; }
+  .tech-badge-circle img { width: 28px; height: 28px; }
+  .tech-badge-circle img.crop-top { width: 34px; height: 23px; }
+  .tech-badge-name { font-size: 9.5px; }
+  .lang-stamps { gap: 20px; }
+  .lang-stamp { width: 100%; padding: 20px 20px 20px; transform: rotate(0deg) scale(.97) translateY(28px); }
+  .sk-lang.in .lang-stamp { transform: rotate(0deg) scale(1); }
+  .lang-stamp:hover { transform: scale(1.02); }
+  .lang-name { font-size: 23px; }
   .sk-panel { padding: 22px; }
 }
 
@@ -900,7 +897,7 @@ footer::before {
 .xp-card:hover::before, .ach-card:hover::before, .proj-inner:hover::before, .sk-panel:hover::before { opacity: .55; }
 
 /* glass lit from above */
-.glass, .sk-panel, .tech-cell, .soft-card { box-shadow: inset 0 1px 0 rgba(242,244,248,.05); }
+.glass, .sk-panel, .tech-badge-circle, .lang-stamp { box-shadow: inset 0 1px 0 rgba(242,244,248,.05); }
 
 /* divider diamonds glint after drawing in */
 @keyframes glint {
@@ -967,7 +964,7 @@ footer::before {
   .xp-logo, .xp-card, .xp-desc li { opacity: 1 !important; transform: none !important; filter: none !important; }
   .xp-desc li::before { width: 8px !important; }
   .xp-line-fill { height: 100% !important; }
-  .tech-cell, .soft-card, .lang-item { opacity: 1 !important; transform: none !important; }
+  .tech-badge, .lang-stamp { opacity: 1 !important; transform: none !important; }
   .ach-card .ach-photo img { scale: 1 !important; }
   .edu-card.reveal { opacity: 1; transform: none; filter: none; }
   .edu-card::before { transform: scaleX(1) !important; }
@@ -989,7 +986,7 @@ footer::before {
   #animation-section { height: auto; }
   .scroll-text { position: static; height: auto; opacity: 1; visibility: visible; filter: none; transform: none; pointer-events: auto; padding-top: 140px; padding-bottom: 60px; }
   .st-hero .hero-overline, .st-hero .hero-roles, .st-hero .hero-actions { opacity: 1; transform: none; }
-  .reveal, .rv, .lang-item, .tech-cell, .soft-card, .xp-logo, .xp-card, .xp-desc li { opacity: 1 !important; transform: none !important; filter: none !important; clip-path: none !important; }
+  .reveal, .rv, .lang-stamp, .tech-badge, .xp-logo, .xp-card, .xp-desc li { opacity: 1 !important; transform: none !important; filter: none !important; clip-path: none !important; }
   .li { transform: none !important; }
   .section-head .overline, .contact-stage .overline { opacity: 1; }
   .section-sub, .contact-sub, .contact-actions, .contact-socials { opacity: 1; transform: none; }
@@ -1103,7 +1100,7 @@ footer::before {
   <div class="glow glow-cyan"></div>
   <div class="section-head reveal">
     <div class="overline">Career</div>
-    <h2 class="section-title"><span class="lm"><span class="li">Professional <em>Experience</em></span></span></h2>
+    <h2 class="section-title"><span class="lm"><span class="li"><em>Experience</em></span></span></h2>
     <p class="section-sub">A timeline of the internships and organizational roles that shaped my craft.</p>
   </div>
   <div class="xp-timeline" id="xp-timeline">
@@ -1120,21 +1117,18 @@ footer::before {
     <div class="section-head reveal">
       <div class="overline">Capabilities</div>
       <h2 class="section-title"><span class="lm"><span class="li">Skills &amp; <em>Expertise</em></span></span></h2>
-      <p class="section-sub">The tools I build with, the habits that hold them together, and the languages I speak.</p>
+      <p class="section-sub">The tools I build with, and the languages I speak.</p>
     </div>
     <div class="skills-composition">
       <div class="sk-panel sk-tech rv">
         <div class="sk-panel-title">Technical Skills</div>
         <div class="sk-word" aria-hidden="true">TECH</div>
-        <div class="tech-grid2" id="tech-grid2"></div>
-      </div>
-      <div class="sk-panel sk-soft rv">
-        <div class="sk-panel-title">Soft Skills</div>
-        <div class="soft-grid2" id="soft-grid2"></div>
+        <div class="tech-cluster" id="tech-cluster"></div>
       </div>
       <div class="sk-panel sk-lang rv">
         <div class="sk-panel-title">Languages</div>
-        <div class="lang-list" id="lang-list"></div>
+        <div class="sk-word" aria-hidden="true">LANG</div>
+        <div class="lang-stamps" id="lang-stamps"></div>
       </div>
     </div>
   </div>
@@ -1251,7 +1245,16 @@ const LINKS = {
 // Each experience: { logoText | logoImg, company, role, date, points: [...] }
 const EXPERIENCES = [
   {
-    logoText: 'GMS',
+    logoImg: 'assets/images/pasaratom-group-logo.jpg',
+    company: 'Pasar Atom Group',
+    role: 'IT Staff',
+    date: '[Month Year] — [Month Year]',
+    points: [
+      '[Add role description here]',
+    ],
+  },
+  {
+    logoImg: 'assets/images/gms-logo.jpg',
     company: 'GMS Church',
     role: 'Information, Communication, and Technology Intern',
     date: 'Jan 2025 — Feb 2025',
@@ -1293,22 +1296,14 @@ const EXPERIENCES = [
   },
 ];
 
-// Technical skills: { icon (short text or emoji), name, label }
+// Technical skills: { icon (short text/emoji fallback) | iconImg (logo path), name }
 const TECHNICAL_SKILLS = [
-  { icon: '</>', name: 'Laravel',       label: 'Advanced' },
-  { icon: '{ }', name: 'Python',        label: 'Advanced' },
-  { icon: '◈',  name: 'TensorFlow',     label: 'Proficient' },
-  { icon: '⌘',  name: 'n8n',            label: 'Proficient' },
-  { icon: '▣',  name: 'Tailwind CSS',   label: 'Advanced' },
-  { icon: '∿',  name: 'SQL',            label: 'Proficient' },
-];
-
-// Soft skills: { icon (emoji), name, desc }
-const SOFT_SKILLS = [
-  { icon: '🧭', name: 'Communication', desc: 'Translating client and stakeholder needs into clear technical tasks.' },
-  { icon: '🤝', name: 'Team Collaboration', desc: 'Working cross-functionally with developers, clients, and committees.' },
-  { icon: '💡', name: 'Critical Thinking', desc: 'Breaking down ambiguous problems into workable solutions.' },
-  { icon: '🎯', name: 'Decision Making', desc: 'Weighing trade-offs quickly to keep projects moving.' },
+  { iconImg: 'assets/images/laravel.png',    name: 'Laravel' },
+  { iconImg: 'assets/images/python.png',     name: 'Python' },
+  { iconImg: 'assets/images/tensorflow.png', name: 'TensorFlow' },
+  { iconImg: 'assets/images/n8n.png',        name: 'n8n' },
+  { iconImg: 'assets/images/tailwind.png',   name: 'Tailwind CSS' },
+  { iconImg: 'assets/images/pgsql.png', iconCrop: true, name: 'SQL' },
 ];
 
 // Languages: { name, level }
@@ -1447,31 +1442,22 @@ const PROJECTS = [
     '⌘'   : IC('<path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/>'),
     '▣'   : IC('<rect x="4" y="4" width="16" height="16" rx="2.5"/><rect x="9" y="9" width="6" height="6"/>'),
     '∿'   : IC('<path d="M3 12c2.5-6 5.5-6 8 0s5.5 6 8 0"/>'),
-    '🧭'  : IC('<circle cx="12" cy="12" r="8.5"/><path d="M15.2 8.8l-1.9 4.5-4.5 1.9 1.9-4.5z"/>'),
-    '🤝'  : IC('<circle cx="9" cy="8.5" r="3.5"/><path d="M3.5 19.5c.8-3.2 3-4.8 5.5-4.8s4.7 1.6 5.5 4.8"/><path d="M15.5 5.3a3.5 3.5 0 0 1 0 6.5"/><path d="M17.3 15c1.8.7 2.9 2.1 3.4 4.2"/>'),
-    '💡'  : IC('<path d="M12 3.5a5.8 5.8 0 0 0-3.9 10.1c.8.7 1.2 1.4 1.4 2.4h5c.2-1 .6-1.7 1.4-2.4A5.8 5.8 0 0 0 12 3.5z"/><line x1="9.8" y1="18.8" x2="14.2" y2="18.8"/><line x1="10.5" y1="21" x2="13.5" y2="21"/>'),
-    '🎯'  : IC('<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/>'),
   };
   const icon = s => ICON_SVGS[s] || esc(s);
 
-  document.getElementById('tech-grid2').innerHTML = TECHNICAL_SKILLS.map((s, i) => `
-    <div class="tech-cell" style="--d:${i * 90}ms">
-      <div class="tech-icon">${icon(s.icon)}</div>
-      <div class="tech-body"><b>${esc(s.name)}</b><i>${esc(s.label)}</i></div>
+  document.getElementById('tech-cluster').innerHTML = TECHNICAL_SKILLS.map((s, i) => `
+    <div class="tech-badge" style="--d:${i * 80}ms">
+      <div class="tech-badge-circle">${s.iconImg
+        ? `<img class="${s.iconCrop ? 'crop-top' : ''}" src="${esc(s.iconImg)}" alt="${esc(s.name)} logo" decoding="async">`
+        : icon(s.icon)}</div>
+      <span class="tech-badge-name">${esc(s.name)}</span>
     </div>`).join('');
 
-  document.getElementById('soft-grid2').innerHTML = SOFT_SKILLS.map((s, i) => `
-    <div class="soft-card" style="--d:${i * 110}ms">
-      <span class="soft-num">${String(i + 1).padStart(2, '0')}</span>
-      <span class="soft-emoji">${icon(s.icon)}</span>
-      <b>${esc(s.name)}</b><p>${esc(s.desc)}</p>
-    </div>`).join('');
-
-  document.getElementById('lang-list').innerHTML = LANGUAGES.map((l, i) => `
-    <div class="lang-item" style="--d:${i * 130}ms">
-      <span class="lang-name">${esc(l.name)}</span>
-      <span class="lang-lead"></span>
-      <span class="lang-level">${esc(l.level)}</span>
+  document.getElementById('lang-stamps').innerHTML = LANGUAGES.map((l, i) => `
+    <div class="lang-stamp" style="--r:${i % 2 === 0 ? '-4deg' : '3deg'}; --d:${i * 140}ms">
+      <div class="lang-eyebrow">Language</div>
+      <div class="lang-name">${esc(l.name)}</div>
+      <div class="lang-level">${esc(l.level)}</div>
     </div>`).join('');
 
   /* ---------- render: education ---------- */
