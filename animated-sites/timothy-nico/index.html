@@ -4477,6 +4477,7 @@
             (e) => {
               mouseV.nx = (e.clientX / window.innerWidth - 0.5) * 2;
               mouseV.ny = (e.clientY / window.innerHeight - 0.5) * 2;
+              scheduleAnimate();
             },
             { passive: true },
           );
@@ -4709,14 +4710,20 @@
         }
 
         /* ---------- frame engine ---------- */
-        // Mobile uses every fourth source frame at full HD. It keeps only the
-        // nearest frames in memory so the sharp images do not crash the page.
-        const FRAME_COUNT = isMobile ? 31 : 121;
+        // Both breakpoints use full-HD frames sampled at 12 fps. A small,
+        // directional cache keeps scrolling smooth without decoding 121 images.
+        const FRAME_COUNT = 61;
+        const SOURCE_FRAME_STEP = isMobile ? 1 : 2;
         const FRAME_DIR = isMobile ? "frames/mobile-lite" : "frames/desktop";
         const frames = new Array(FRAME_COUNT).fill(null);
         const frameLoads = new Map();
-        const mobileFrameRecency = new Map();
-        const MOBILE_CACHE_SIZE = 8;
+        const frameRecency = new Map();
+        const FRAME_CACHE_SIZE = isMobile ? 10 : 16;
+        const MAX_CONCURRENT_LOADS = isMobile ? 2 : 4;
+        const frameQueue = [];
+        const queuedFrames = new Set();
+        let activeFrameLoads = 0;
+        let lastPrefetchedFrame = 0;
         const canvas = document.getElementById("hero-canvas");
         const ctx = canvas.getContext("2d");
         const section = document.getElementById("animation-section");
@@ -4727,19 +4734,20 @@
           firstFrameReady = false;
 
         function framePath(i) {
-          return `${FRAME_DIR}/frame-${String(i + 1).padStart(4, "0")}.webp`;
+          const sourceFrame = i * SOURCE_FRAME_STEP + 1;
+          return `${FRAME_DIR}/frame-${String(sourceFrame).padStart(4, "0")}.webp`;
         }
 
         function touchFrame(i) {
-          if (!isMobile || !frames[i]) return;
-          mobileFrameRecency.delete(i);
-          mobileFrameRecency.set(i, true);
-          while (mobileFrameRecency.size > MOBILE_CACHE_SIZE) {
-            const oldest = mobileFrameRecency.keys().next().value;
+          if (!frames[i]) return;
+          frameRecency.delete(i);
+          frameRecency.set(i, true);
+          while (frameRecency.size > FRAME_CACHE_SIZE) {
+            const oldest = frameRecency.keys().next().value;
             const frame = frames[oldest];
             if (frame && typeof frame.close === "function") frame.close();
             frames[oldest] = null;
-            mobileFrameRecency.delete(oldest);
+            frameRecency.delete(oldest);
           }
         }
 
@@ -4777,6 +4785,31 @@
           return request;
         }
 
+        function pumpFrameQueue() {
+          while (activeFrameLoads < MAX_CONCURRENT_LOADS && frameQueue.length) {
+            const i = frameQueue.shift();
+            queuedFrames.delete(i);
+            if (frames[i] || frameLoads.has(i)) continue;
+            activeFrameLoads++;
+            loadFrame(i).then(() => {
+              activeFrameLoads--;
+              pumpFrameQueue();
+              scheduleAnimate();
+            });
+          }
+        }
+
+        function queueFrame(i, urgent = false) {
+          if (i < 0 || i >= FRAME_COUNT || frames[i] || frameLoads.has(i))
+            return;
+          if (!queuedFrames.has(i)) {
+            if (urgent) frameQueue.unshift(i);
+            else frameQueue.push(i);
+            queuedFrames.add(i);
+          }
+          pumpFrameQueue();
+        }
+
         function nearestLoaded(i) {
           if (frames[i]) {
             touchFrame(i);
@@ -4795,11 +4828,12 @@
           return null;
         }
 
-        function prefetchMobileFrames(i) {
-          if (!isMobile) return;
-          loadFrame(i);
-          if (i > 0) loadFrame(i - 1);
-          if (i < FRAME_COUNT - 1) loadFrame(i + 1);
+        function prefetchFrames(i) {
+          const direction = i >= lastPrefetchedFrame ? 1 : -1;
+          lastPrefetchedFrame = i;
+          queueFrame(i, true);
+          for (let d = 1; d <= 6; d++) queueFrame(i + d * direction);
+          for (let d = 1; d <= 2; d++) queueFrame(i - d * direction);
         }
 
         function resizeCanvas() {
@@ -4898,7 +4932,15 @@
           }
         }
 
+        let animationQueued = false;
+        function scheduleAnimate() {
+          if (animationQueued) return;
+          animationQueued = true;
+          requestAnimationFrame(animate);
+        }
+
         function animate() {
+          animationQueued = false;
           const rect = section.getBoundingClientRect();
           const inHero = rect.bottom > 0 && rect.top < window.innerHeight;
           if (inHero) {
@@ -4908,7 +4950,7 @@
             currentFrame += (target - currentFrame) * LERP_FACTOR;
             if (Math.abs(target - currentFrame) < 0.02) currentFrame = target;
             const frameIndex = Math.round(currentFrame);
-            prefetchMobileFrames(frameIndex);
+            prefetchFrames(frameIndex);
             drawFrame(frameIndex);
             updateOverlays(eff, true);
             // cinematic outro: the hero screen recedes in the final stretch (reversible)
@@ -4932,11 +4974,11 @@
               for (const b of beatPars)
                 b.style.transform = `translate(${(parX * 16).toFixed(1)}px, ${(parY * 10).toFixed(1)}px)`;
             }
+            if (Math.abs(target - currentFrame) >= 0.02) scheduleAnimate();
           } else {
             updateOverlays(0, false);
           }
           globalEffects();
-          requestAnimationFrame(animate);
         }
 
         /* ---------- nav behavior ---------- */
@@ -4948,6 +4990,7 @@
         window.addEventListener(
           "scroll",
           () => {
+            scheduleAnimate();
             const y = window.scrollY;
             nav.classList.toggle("scrolled", y > 40);
             nav.classList.toggle(
@@ -5323,9 +5366,10 @@
 
         /* ---------- init: progressive frame loading ---------- */
         async function init() {
-          const critical = [];
-          const STEP = 8;
-          for (let i = 0; i < FRAME_COUNT; i += STEP) critical.push(i);
+          const critical = Array.from(
+            { length: Math.min(8, FRAME_COUNT) },
+            (_, i) => i,
+          );
           if (!critical.includes(FRAME_COUNT - 1))
             critical.push(FRAME_COUNT - 1);
           await Promise.all(critical.map(loadFrame));
@@ -5335,19 +5379,7 @@
 
           loader.classList.add("done");
           document.body.classList.add("ready");
-          requestAnimationFrame(animate);
-
-          // Phones fetch full-HD frames only as the visitor approaches them.
-          if (isMobile) return;
-
-          const rest = [];
-          for (let i = 0; i < FRAME_COUNT; i++) if (!frames[i]) rest.push(i);
-          const BATCH = 12;
-          for (let b = 0; b < rest.length; b += BATCH) {
-            await Promise.all(rest.slice(b, b + BATCH).map(loadFrame));
-          }
-          loaderFill.style.width = "100%";
-          loaderPct.textContent = "100%";
+          scheduleAnimate();
         }
 
         if (reducedMotion) {
