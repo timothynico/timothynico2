@@ -666,12 +666,15 @@
         overflow: hidden;
         will-change: transform;
       }
-      #hero-canvas {
+      #hero-video {
         position: absolute;
         inset: 0;
         width: 100%;
         height: 100%;
         z-index: 0;
+        object-fit: cover;
+        object-position: center;
+        will-change: transform;
       }
       .canvas-overlay-left {
         position: absolute;
@@ -785,9 +788,23 @@
         transition-delay: 0.55s;
       }
 
-      .st-hero {
-        padding-left: clamp(20px, 6vw, 110px);
-        padding-right: 20px;
+      .st-hero,
+      .st-vision {
+        align-items: center;
+        justify-content: flex-end;
+        padding:
+          0 clamp(20px, 6vw, 110px)
+          max(88px, calc(54px + env(safe-area-inset-bottom)));
+        text-align: center;
+      }
+      .st-hero .beat-par {
+        width: min(100%, 1000px);
+      }
+      .st-vision {
+        max-width: none;
+      }
+      .st-vision .beat-par {
+        width: min(100%, 860px);
       }
       .hero-overline {
         font-family: var(--mono);
@@ -800,6 +817,7 @@
         display: flex;
         align-items: center;
         gap: 14px;
+        justify-content: center;
       }
       .hero-overline::before {
         content: "";
@@ -848,6 +866,7 @@
         flex-wrap: wrap;
         align-items: center;
         gap: 12px 16px;
+        justify-content: center;
       }
       .hero-roles .sep {
         width: 4px;
@@ -866,6 +885,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 14px;
+        justify-content: center;
       }
       @media (max-width: 640px) {
         /* Narrow block on the left — keeps the right half of the video clear. Three
@@ -877,6 +897,7 @@
           align-items: flex-start;
           gap: 10px;
           max-width: min(280px, 74vw);
+          margin-inline: auto;
         }
         .hero-actions .hero-btn {
           flex: none;
@@ -932,11 +953,13 @@
       }
       .hero-scroll-hint {
         position: absolute;
-        bottom: 34px;
-        left: clamp(20px, 6vw, 110px);
+        right: 0;
+        bottom: max(22px, env(safe-area-inset-bottom));
+        left: 0;
         display: flex;
         align-items: center;
         gap: 12px;
+        justify-content: center;
         font-family: var(--mono);
         font-size: 10px;
         letter-spacing: 0.2em;
@@ -969,11 +992,6 @@
         }
       }
 
-      .st-vision {
-        padding-left: clamp(20px, 6vw, 110px);
-        padding-right: 20px;
-        max-width: 860px;
-      }
       .vision-mark {
         font-family: var(--heading);
         font-size: 88px;
@@ -999,7 +1017,7 @@
         width: 60px;
         height: 1px;
         background: var(--amb);
-        margin-bottom: 18px;
+        margin: 0 auto 18px;
       }
       .vision-attr {
         font-family: var(--mono);
@@ -1007,6 +1025,20 @@
         letter-spacing: 0.2em;
         text-transform: uppercase;
         color: var(--mist);
+      }
+      @media (min-width: 769px) {
+        /* Keep the quotation mark as a lead-in to the statement, clear of the
+           portrait in the video background. */
+        .st-vision .beat-par {
+          position: relative;
+          padding-inline: 72px;
+        }
+        .st-vision .vision-mark {
+          position: absolute;
+          top: 18px;
+          left: 0;
+          margin: 0;
+        }
       }
 
       #chapters {
@@ -3937,11 +3969,22 @@
       <div class="ch-dot" data-ch="1"></div>
     </div>
 
-    <!-- ============ HERO: scroll-driven video ============ -->
+    <!-- ============ HERO: video background ============ -->
     <section id="home"></section>
     <div id="animation-section">
       <div class="canvas-container">
-        <canvas id="hero-canvas"></canvas>
+        <video
+          id="hero-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="frames/desktop/frame-0001.webp"
+          aria-label="Night cityscape"
+        >
+          <source src="assets/video_hero_section.mp4" type="video/mp4" />
+        </video>
         <div class="canvas-overlay-left"></div>
         <div class="canvas-overlay-bottom"></div>
         <div id="tint-overlay"></div>
@@ -4709,158 +4752,10 @@
           return (i - 1 + t) / REMAP_N;
         }
 
-        /* ---------- frame engine ---------- */
-        // Both breakpoints use full-HD frames sampled at 12 fps. A small,
-        // directional cache keeps scrolling smooth without decoding 121 images.
-        const FRAME_COUNT = 61;
-        const SOURCE_FRAME_STEP = isMobile ? 1 : 2;
-        const FRAME_DIR = isMobile ? "frames/mobile-lite" : "frames/desktop";
-        const frames = new Array(FRAME_COUNT).fill(null);
-        const frameLoads = new Map();
-        const frameRecency = new Map();
-        const FRAME_CACHE_SIZE = isMobile ? 10 : 16;
-        const MAX_CONCURRENT_LOADS = isMobile ? 2 : 4;
-        const frameQueue = [];
-        const queuedFrames = new Set();
-        let activeFrameLoads = 0;
-        let lastPrefetchedFrame = 0;
-        const canvas = document.getElementById("hero-canvas");
-        const ctx = canvas.getContext("2d");
+        /* ---------- video hero ---------- */
+        const video = document.getElementById("hero-video");
         const section = document.getElementById("animation-section");
-        const loaderFill = document.getElementById("loader-fill");
-        const loaderPct = document.getElementById("loader-pct");
         const loader = document.getElementById("loader");
-        let loadedCount = 0,
-          firstFrameReady = false;
-
-        function framePath(i) {
-          const sourceFrame = i * SOURCE_FRAME_STEP + 1;
-          return `${FRAME_DIR}/frame-${String(sourceFrame).padStart(4, "0")}.webp`;
-        }
-
-        function touchFrame(i) {
-          if (!frames[i]) return;
-          frameRecency.delete(i);
-          frameRecency.set(i, true);
-          while (frameRecency.size > FRAME_CACHE_SIZE) {
-            const oldest = frameRecency.keys().next().value;
-            const frame = frames[oldest];
-            if (frame && typeof frame.close === "function") frame.close();
-            frames[oldest] = null;
-            frameRecency.delete(oldest);
-          }
-        }
-
-        function loadFrame(i) {
-          if (frames[i]) {
-            touchFrame(i);
-            return Promise.resolve();
-          }
-          if (frameLoads.has(i)) return frameLoads.get(i);
-          const request = new Promise((resolve) => {
-            const img = new Image();
-            img.onload = async () => {
-              if (window.createImageBitmap) {
-                try {
-                  frames[i] = await createImageBitmap(img);
-                } catch (e) {
-                  frames[i] = img;
-                }
-              } else frames[i] = img;
-              touchFrame(i);
-              loadedCount++;
-              const pct = Math.round((loadedCount / FRAME_COUNT) * 100);
-              loaderFill.style.width = pct + "%";
-              loaderPct.textContent = pct + "%";
-              resolve();
-            };
-            img.onerror = () => {
-              loadedCount++;
-              resolve();
-            };
-            img.src = framePath(i);
-          });
-          frameLoads.set(i, request);
-          request.then(() => frameLoads.delete(i));
-          return request;
-        }
-
-        function pumpFrameQueue() {
-          while (activeFrameLoads < MAX_CONCURRENT_LOADS && frameQueue.length) {
-            const i = frameQueue.shift();
-            queuedFrames.delete(i);
-            if (frames[i] || frameLoads.has(i)) continue;
-            activeFrameLoads++;
-            loadFrame(i).then(() => {
-              activeFrameLoads--;
-              pumpFrameQueue();
-              scheduleAnimate();
-            });
-          }
-        }
-
-        function queueFrame(i, urgent = false) {
-          if (i < 0 || i >= FRAME_COUNT || frames[i] || frameLoads.has(i))
-            return;
-          if (!queuedFrames.has(i)) {
-            if (urgent) frameQueue.unshift(i);
-            else frameQueue.push(i);
-            queuedFrames.add(i);
-          }
-          pumpFrameQueue();
-        }
-
-        function nearestLoaded(i) {
-          if (frames[i]) {
-            touchFrame(i);
-            return frames[i];
-          }
-          for (let d = 1; d < FRAME_COUNT; d++) {
-            if (frames[i - d]) {
-              touchFrame(i - d);
-              return frames[i - d];
-            }
-            if (frames[i + d]) {
-              touchFrame(i + d);
-              return frames[i + d];
-            }
-          }
-          return null;
-        }
-
-        function prefetchFrames(i) {
-          const direction = i >= lastPrefetchedFrame ? 1 : -1;
-          lastPrefetchedFrame = i;
-          queueFrame(i, true);
-          for (let d = 1; d <= 6; d++) queueFrame(i + d * direction);
-          for (let d = 1; d <= 2; d++) queueFrame(i - d * direction);
-        }
-
-        function resizeCanvas() {
-          const dpr = Math.min(window.devicePixelRatio || 1, 2);
-          canvas.width = Math.round(canvas.clientWidth * dpr);
-          canvas.height = Math.round(canvas.clientHeight * dpr);
-          drawFrame(lastDrawn, true);
-        }
-
-        let lastDrawn = 0;
-        function drawFrame(i, force) {
-          i = Math.max(0, Math.min(FRAME_COUNT - 1, i));
-          if (i === lastDrawn && !force && firstFrameReady) return;
-          const img = nearestLoaded(i);
-          if (!img) return;
-          lastDrawn = i;
-          const cw = canvas.width,
-            chh = canvas.height;
-          const iw = img.width,
-            ih = img.height;
-          const scale = Math.max(cw / iw, chh / ih);
-          const dw = iw * scale,
-            dh = ih * scale;
-          ctx.drawImage(img, (cw - dw) / 2, (chh - dh) / 2, dw, dh);
-        }
-
-        window.addEventListener("resize", resizeCanvas);
 
         /* ---------- scroll state ---------- */
         function getScrollProgress() {
@@ -4875,9 +4770,7 @@
         const chDots = [...document.querySelectorAll(".ch-dot")];
         const chFill = document.querySelector(".ch-line .fill");
         const tint = document.getElementById("tint-overlay");
-        const LERP_FACTOR = 0.12;
-        let currentFrame = 0,
-          heroPlayed = false,
+        let heroPlayed = false,
           parX = 0,
           parY = 0;
         const beatPars = [...document.querySelectorAll(".beat-par")];
@@ -4946,12 +4839,6 @@
           if (inHero) {
             const raw = getScrollProgress();
             const eff = reducedMotion ? raw : remapProgress(raw);
-            const target = eff * (FRAME_COUNT - 1);
-            currentFrame += (target - currentFrame) * LERP_FACTOR;
-            if (Math.abs(target - currentFrame) < 0.02) currentFrame = target;
-            const frameIndex = Math.round(currentFrame);
-            prefetchFrames(frameIndex);
-            drawFrame(frameIndex);
             updateOverlays(eff, true);
             // cinematic outro: the hero screen recedes in the final stretch (reversible)
             const out = Math.max(0, (eff - 0.94) / 0.06);
@@ -4966,15 +4853,14 @@
               }
               lastOut = out;
             }
-            // mouse parallax: canvas drifts against the cursor, text with it
+            // mouse parallax: the video drifts against the cursor, text with it
             if (finePointer && !reducedMotion) {
-              parX += (mouseV.nx - parX) * 0.06;
-              parY += (mouseV.ny - parY) * 0.06;
-              canvas.style.transform = `scale(1.06) translate(${(-parX * 10).toFixed(1)}px, ${(-parY * 7).toFixed(1)}px)`;
+              parX = mouseV.nx;
+              parY = mouseV.ny;
+              video.style.transform = `scale(1.06) translate(${(-parX * 10).toFixed(1)}px, ${(-parY * 7).toFixed(1)}px)`;
               for (const b of beatPars)
                 b.style.transform = `translate(${(parX * 16).toFixed(1)}px, ${(parY * 10).toFixed(1)}px)`;
             }
-            if (Math.abs(target - currentFrame) >= 0.02) scheduleAnimate();
           } else {
             updateOverlays(0, false);
           }
@@ -5364,19 +5250,9 @@
           });
         })();
 
-        /* ---------- init: progressive frame loading ---------- */
-        async function init() {
-          const critical = Array.from(
-            { length: Math.min(8, FRAME_COUNT) },
-            (_, i) => i,
-          );
-          if (!critical.includes(FRAME_COUNT - 1))
-            critical.push(FRAME_COUNT - 1);
-          await Promise.all(critical.map(loadFrame));
-          firstFrameReady = true;
-          resizeCanvas();
-          drawFrame(0, true);
-
+        /* ---------- video init ---------- */
+        function finishHeroLoad() {
+          if (document.body.classList.contains("ready")) return;
           loader.classList.add("done");
           document.body.classList.add("ready");
           scheduleAnimate();
@@ -5384,17 +5260,21 @@
 
         if (reducedMotion) {
           section.style.height = "100vh";
-          loadFrame(0).then(() => {
-            firstFrameReady = true;
-            resizeCanvas();
-            drawFrame(0, true);
-            loader.classList.add("done");
-            document.body.classList.add("ready");
+          video.pause();
+          const showReducedHero = () => {
+            finishHeroLoad();
             scrollTexts[0].classList.add("visible");
             heroName.classList.add("played");
-          });
+          };
+          if (video.readyState >= 2) showReducedHero();
+          else video.addEventListener("loadeddata", showReducedHero, { once: true });
         } else {
-          init();
+          if (video.readyState >= 2) finishHeroLoad();
+          else {
+            video.addEventListener("loadeddata", finishHeroLoad, { once: true });
+            video.addEventListener("error", finishHeroLoad, { once: true });
+          }
+          video.play().catch(() => {});
         }
       })();
     </script>
