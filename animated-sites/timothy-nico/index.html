@@ -651,6 +651,13 @@
         position: relative;
         height: 400vh;
       }
+      /* Phones use a shorter, lighter scrub sequence so the hero finishes
+         sooner without keeping a full desktop-sized video in memory. */
+      @media (max-width: 768px) {
+        #animation-section {
+          height: 260vh;
+        }
+      }
       .canvas-container {
         position: sticky;
         top: 0;
@@ -4702,9 +4709,14 @@
         }
 
         /* ---------- frame engine ---------- */
-        const FRAME_COUNT = 121;
-        const FRAME_DIR = isMobile ? "frames/mobile" : "frames/desktop";
+        // Mobile uses every fourth source frame at full HD. It keeps only the
+        // nearest frames in memory so the sharp images do not crash the page.
+        const FRAME_COUNT = isMobile ? 31 : 121;
+        const FRAME_DIR = isMobile ? "frames/mobile-lite" : "frames/desktop";
         const frames = new Array(FRAME_COUNT).fill(null);
+        const frameLoads = new Map();
+        const mobileFrameRecency = new Map();
+        const MOBILE_CACHE_SIZE = 8;
         const canvas = document.getElementById("hero-canvas");
         const ctx = canvas.getContext("2d");
         const section = document.getElementById("animation-section");
@@ -4718,8 +4730,26 @@
           return `${FRAME_DIR}/frame-${String(i + 1).padStart(4, "0")}.webp`;
         }
 
+        function touchFrame(i) {
+          if (!isMobile || !frames[i]) return;
+          mobileFrameRecency.delete(i);
+          mobileFrameRecency.set(i, true);
+          while (mobileFrameRecency.size > MOBILE_CACHE_SIZE) {
+            const oldest = mobileFrameRecency.keys().next().value;
+            const frame = frames[oldest];
+            if (frame && typeof frame.close === "function") frame.close();
+            frames[oldest] = null;
+            mobileFrameRecency.delete(oldest);
+          }
+        }
+
         function loadFrame(i) {
-          return new Promise((resolve) => {
+          if (frames[i]) {
+            touchFrame(i);
+            return Promise.resolve();
+          }
+          if (frameLoads.has(i)) return frameLoads.get(i);
+          const request = new Promise((resolve) => {
             const img = new Image();
             img.onload = async () => {
               if (window.createImageBitmap) {
@@ -4729,6 +4759,7 @@
                   frames[i] = img;
                 }
               } else frames[i] = img;
+              touchFrame(i);
               loadedCount++;
               const pct = Math.round((loadedCount / FRAME_COUNT) * 100);
               loaderFill.style.width = pct + "%";
@@ -4741,15 +4772,34 @@
             };
             img.src = framePath(i);
           });
+          frameLoads.set(i, request);
+          request.then(() => frameLoads.delete(i));
+          return request;
         }
 
         function nearestLoaded(i) {
-          if (frames[i]) return frames[i];
+          if (frames[i]) {
+            touchFrame(i);
+            return frames[i];
+          }
           for (let d = 1; d < FRAME_COUNT; d++) {
-            if (frames[i - d]) return frames[i - d];
-            if (frames[i + d]) return frames[i + d];
+            if (frames[i - d]) {
+              touchFrame(i - d);
+              return frames[i - d];
+            }
+            if (frames[i + d]) {
+              touchFrame(i + d);
+              return frames[i + d];
+            }
           }
           return null;
+        }
+
+        function prefetchMobileFrames(i) {
+          if (!isMobile) return;
+          loadFrame(i);
+          if (i > 0) loadFrame(i - 1);
+          if (i < FRAME_COUNT - 1) loadFrame(i + 1);
         }
 
         function resizeCanvas() {
@@ -4857,7 +4907,9 @@
             const target = eff * (FRAME_COUNT - 1);
             currentFrame += (target - currentFrame) * LERP_FACTOR;
             if (Math.abs(target - currentFrame) < 0.02) currentFrame = target;
-            drawFrame(Math.round(currentFrame));
+            const frameIndex = Math.round(currentFrame);
+            prefetchMobileFrames(frameIndex);
+            drawFrame(frameIndex);
             updateOverlays(eff, true);
             // cinematic outro: the hero screen recedes in the final stretch (reversible)
             const out = Math.max(0, (eff - 0.94) / 0.06);
@@ -5284,6 +5336,9 @@
           loader.classList.add("done");
           document.body.classList.add("ready");
           requestAnimationFrame(animate);
+
+          // Phones fetch full-HD frames only as the visitor approaches them.
+          if (isMobile) return;
 
           const rest = [];
           for (let i = 0; i < FRAME_COUNT; i++) if (!frames[i]) rest.push(i);
