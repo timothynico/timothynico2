@@ -19,6 +19,7 @@ Implemented in `animated-sites/timothy-nico/index.html`, with styles and optiona
 - Entrances now have a composed sequence: display text rises through a line mask in 780ms, supporting copy settles over 650ms, and featured images enter over 900ms. Successive title lines have a 110ms delay and a pronounced ease-out. The observer triggers when a group reaches 85% of viewport height. Entrances play once; keyboard focus immediately reveals the target, and completed animations release their styles so hover remains responsive. Hero CTAs are excluded from the entrance sequence and are immediately visible. Reduced motion, missing animation/IntersectionObserver support, and printing preserve static content.
 - Continuous scroll depth connects the chapters with a quieter treatment: the hero film and type move in opposite directions at reduced distances, Hanzi travels independently, and featured project images drift within their frames. Headings stay stationary after their entrance. Architectural light seams and a directional wash respond to each section's position, with ice blue, muted rose, and cool neutral light distinguishing the chapters. Light intensity and glyph travel have been reduced so typography leads the experience. A thin header rule shows reading progress. Body copy stays stationary.
 - On desktops with sufficient height, the Experience introduction stays in view while its list scrolls. Small screens use gentler depth and normal document flow. Native scrolling and anchors are preserved; the frame callback runs only after scrolling, resizing, or relevant layout changes. Geometry reads are batched before style writes. Live reduced-motion changes and print styles remove depth and decorative light layers.
+- Mobile spacing now uses a 24–32px outer gutter, 96px section padding, 56px between reading groups, and 72px between featured projects. Supporting project and experience text uses 16px type with a 1.8 line height. About gives the title its full column and places the Hanzi signature in a separate row; tools use two columns. Experience descriptions span the available column, expanded details lose the narrow left indent, and rows have 32px vertical padding. Hero spacing has been opened up while keeping all three contact links in the first viewport.
 
 ## Verification
 
@@ -43,6 +44,8 @@ Scroll-scene checks verified changing Hanzi and light positions with stationary 
 - [Validation results](redesign-validation.json)
 - [Work chapter on desktop](chapter-desktop.png)
 - [Work chapter on mobile](chapter-mobile.png)
+- [About on mobile](about-mobile.png)
+- [Expanded experience on mobile](experience-detail-mobile.png)
 - [Motion validation](motion-validation.json)
 - [Motion study and Apple sources](apple-motion-study.md)
 - [Browser scroll preview](motion-preview.webm)

@@ -126,8 +126,8 @@ button {
 .section {
   padding-block: clamp(72px, 8vw, 120px);
 }
-/* Chapter surfaces share an architectural light seam. Only decorative layers
-   and chapter headings move; body copy and native document scrolling stay put. */
+/* Chapter surfaces share an architectural light seam. Decorative layers move;
+   reading text and native document scrolling stay put after entrances finish. */
 .scroll-scene {
   position: relative;
   isolation: isolate;
@@ -1475,6 +1475,14 @@ dialog::backdrop {
   }
 }
 @media (max-width: 720px) {
+  :root {
+    --gutter: clamp(24px, 7vw, 32px);
+    --mobile-section-space: 96px;
+    --mobile-group-space: 56px;
+  }
+  .section {
+    padding-block: var(--mobile-section-space);
+  }
   .chapter-glyph {
     font-size: 60px;
   }
@@ -1488,32 +1496,48 @@ dialog::backdrop {
   .chapter-aside .section-intro {
     max-width: 24ch;
     margin: 0;
-    font-size: 13px;
+    font-size: 15px;
+    line-height: 1.8;
   }
   .chapter-aside .chapter-glyph {
     font-size: clamp(46px, 12vw, 64px);
   }
   .chapter-heading::after {
-    bottom: -16px;
+    bottom: -24px;
   }
   .experience-intro.chapter-heading {
-    padding-top: 24px;
-    padding-right: 94px;
+    padding-top: 32px;
+    padding-right: 0;
+  }
+  .experience-intro h2 {
+    padding-right: 80px;
+  }
+  .experience-intro > p:not(.eyebrow) {
+    margin-block: 28px 0;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .experience-intro > p br {
+    display: none;
   }
   .experience-intro .chapter-glyph {
     position: absolute;
     right: 0;
-    top: 60px;
+    top: 72px;
     margin: 0;
     writing-mode: vertical-rl;
-    font-size: 40px;
+    font-size: 36px;
   }
   .about-signature {
-    gap: 16px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 24px;
   }
   .about-signature .chapter-glyph {
-    writing-mode: vertical-rl;
-    font-size: 42px;
+    writing-mode: horizontal-tb;
+    font-size: 50px;
   }
   .about-signature .about-name > span:first-child {
     font-size: 16px;
@@ -1551,7 +1575,7 @@ dialog::backdrop {
   .skill-groups,
   .certification-grid {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 32px;
   }
   .certification h4 {
     font-size: 18px;
@@ -1639,24 +1663,24 @@ dialog::backdrop {
     gap: 9px;
   }
   .hero h1 {
-    font-size: clamp(58px, min(18vw, 12.5svh), 112px);
-    margin-top: clamp(16px, 2.6svh, 24px);
+    font-size: clamp(56px, min(17vw, 12svh), 104px);
+    margin-top: clamp(20px, 3svh, 28px);
   }
   .hero-intro {
     font-size: clamp(18px, 2.6svh, 23px);
-    margin-top: clamp(16px, 2.5svh, 24px);
+    margin-top: clamp(22px, 3svh, 30px);
   }
   .hero-actions {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     max-width: 420px;
     gap: 8px;
-    margin-top: clamp(18px, 2.8svh, 26px);
+    margin-top: clamp(26px, 3.6svh, 32px);
   }
   .hero-actions .button {
     min-width: 0;
     gap: 6px;
-    padding-inline: 9px;
+    padding-inline: 8px;
     font-size: 12px;
   }
   .hero-actions .button svg {
@@ -1677,25 +1701,27 @@ dialog::backdrop {
   .section-heading {
     flex-direction: column;
     align-items: flex-start;
-    gap: 22px;
-    margin-bottom: 36px;
+    gap: 32px;
+    margin-bottom: var(--mobile-group-space);
   }
   .section-heading .eyebrow {
     font-size: 9px;
-    margin-bottom: 17px;
+    margin-bottom: 24px;
   }
   h2 {
     font-size: clamp(44px, 10.8vw, 68px);
+    line-height: 1.08;
   }
   .section-intro {
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 1.8;
   }
   .section-intro br {
     display: none;
   }
   .featured-projects {
     grid-template-columns: 1fr;
-    gap: 44px;
+    gap: 72px;
   }
   .feature-2 {
     margin-top: 0;
@@ -1710,12 +1736,40 @@ dialog::backdrop {
   }
   .project-copy h3 {
     font-size: 28px;
+    line-height: 1.3;
+  }
+  .project-copy {
+    padding-top: 28px;
   }
   .project-copy > p {
-    font-size: 14px;
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .tags {
+    gap: 10px 18px;
+    margin-top: 24px;
+  }
+  .tags span {
+    font-size: 10px;
+  }
+  .project-detail {
+    margin-top: 32px;
+  }
+  .project-detail summary {
+    min-height: 64px;
+    font-size: 13px;
+  }
+  .detail-body {
+    padding-bottom: 28px;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .project-points li + li {
+    margin-top: 20px;
   }
   .more-work {
-    margin-top: 48px;
+    margin-top: 72px;
   }
   .more-work-label {
     gap: 12px;
@@ -1724,9 +1778,10 @@ dialog::backdrop {
     font-size: 8px;
   }
   .project-row summary {
-    grid-template-columns: 26px minmax(0, 1fr) 24px;
-    gap: 12px;
-    min-height: 94px;
+    grid-template-columns: 20px minmax(0, 1fr) 20px;
+    gap: 14px;
+    min-height: 108px;
+    padding-block: 28px;
   }
   .project-row summary h3 {
     font-size: 18px;
@@ -1736,30 +1791,54 @@ dialog::backdrop {
   }
   .project-row-body {
     grid-template-columns: 1fr;
-    gap: 22px;
-    padding: 0 0 28px 38px;
+    gap: 28px;
+    padding: 0 0 36px;
   }
   .project-row-body p {
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 1.8;
   }
   .experience-layout {
     grid-template-columns: 1fr;
-    gap: 42px;
+    gap: var(--mobile-group-space);
   }
   .experience-intro h2 {
     font-size: clamp(30px, 8.5vw, 44px);
   }
 
   .experience-heading {
-    padding-block: 24px;
+    gap: 12px 14px;
+    padding-block: 32px;
+  }
+  .experience-heading p {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .experience-heading h3 .current-label {
+    display: block;
+    width: fit-content;
+    justify-self: start;
+    margin: 8px 0 0;
+  }
+  .experience-body {
+    padding: 0 0 36px;
+  }
+  .experience-body ul {
+    padding-left: 20px;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .experience-body li + li {
+    margin-top: 20px;
   }
   .experience-heading h3 {
     font-size: 17px;
   }
   .about-section .section-heading {
-    flex-direction: row;
-    align-items: flex-end;
-    gap: 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
   }
   .about-section h2 {
     font-size: clamp(40px, 10vw, 62px);
@@ -1782,31 +1861,63 @@ dialog::backdrop {
   }
   .about-layout {
     grid-template-columns: 1fr;
-    gap: 42px;
-    padding-bottom: 42px;
+    gap: var(--mobile-group-space);
+    padding-block: 12px var(--mobile-group-space);
   }
   .about-note > p {
     font-size: 25px;
     max-width: 29ch;
+    line-height: 1.6;
   }
   .tool-list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 20px;
+    margin-top: 32px;
   }
   .tool-list li {
-    font-size: 11px;
-    gap: 8px;
+    font-size: 13px;
+    gap: 12px;
   }
   .tool-list img {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
+  }
+  .language-heading {
+    margin-top: 48px;
+  }
+  .language-list li {
+    padding-block: 18px;
+    font-size: 14px;
+  }
+  .skill-depth,
+  .credentials {
+    padding-block: 48px;
+  }
+  .skill-groups {
+    margin-top: 32px;
+  }
+  .skill-groups dt,
+  .skill-groups dd {
+    font-size: 14px;
+  }
+  .certification p {
+    font-size: 14px;
+    line-height: 1.8;
   }
   .education-list {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 40px;
   }
   .education-row {
-    gap: 18px;
+    gap: 20px;
+  }
+  .education-row p {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .education-row .education-note {
+    font-size: 14px;
   }
   .education-row h4 {
     font-size: 18px;
@@ -1816,12 +1927,16 @@ dialog::backdrop {
   }
   .recognition-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 40px;
+  }
+  .recognitions {
+    margin-top: 0;
+    padding-top: 48px;
   }
   .recognition {
     display: grid;
-    grid-template-columns: 96px 1fr;
-    gap: 0 18px;
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 0 20px;
   }
   .recognition-image {
     grid-column: 1;
@@ -1849,14 +1964,15 @@ dialog::backdrop {
     font-size: 16px;
   }
   .recognition p {
-    font-size: 11px;
-    margin-top: 8px;
+    font-size: 13px;
+    line-height: 1.8;
+    margin-top: 12px;
   }
   .recognition-heading .index {
     font-size: 8px;
   }
   .contact-section {
-    padding-bottom: 64px;
+    padding-bottom: 80px;
   }
   .contact-inner h2 {
     font-size: clamp(48px, 12vw, 80px);
@@ -1864,8 +1980,8 @@ dialog::backdrop {
   .contact-bottom {
     flex-direction: column;
     align-items: flex-start;
-    gap: 28px;
-    margin-top: 28px;
+    gap: 40px;
+    margin-top: 48px;
   }
   .contact-email {
     font-size: clamp(12px, 3.3vw, 18px);
