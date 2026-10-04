@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "Hero CTAs stay visible during the identity text entrance",
+    "Project image hover remains responsive after its entrance finishes",
+    "Masked chapter lines use 780ms entrances; groups settle and do not replay on return",
+    "Keyboard focus cancels entrances immediately and retains native navigation",
+    "Changing reduced motion during the session stops entrances and leaves all content visible",
+    "Chapter typography and Hanzi fit desktop, tablet, 390px and 320px widths",
+    "Browsers without IntersectionObserver retain visible chapters and working controls"
+  ],
+  "errors": []
+}

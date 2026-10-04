@@ -1,5 +1,3 @@
-Drop your resume PDF here as: resume.pdf
-
-The "Download Resume" buttons on the site point to assets/resume.pdf.
-To change the filename, edit the LINKS constant near the top of the
-<script> block in index.html.
+The site uses static HTML, styles.css, and script.js; no build step is needed.
+The hero uses video_hero_section.mp4 with images/city-lights-poster.webp
+as its matching still image for reduced motion and media loading.

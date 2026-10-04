@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "Hero film and type move in opposite directions with native scroll",
+    "Hanzi, light sweep and section seam respond continuously; headings remain stationary after their entrance",
+    "Idle scrolling state is stable; no perpetual animation or artificial scroll movement",
+    "Desktop experience intro stays in view while longer role details scroll",
+    "Mobile uses gentler depth and normal flow rather than sticky chapter headings",
+    "Live reduced-motion changes and printing remove all scroll transforms and light layers",
+    "Direct thesis links and 320px reflow remain usable with scene motion enabled"
+  ],
+  "errors": []
+}

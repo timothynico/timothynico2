@@ -1,0 +1,118 @@
+{
+  "screens": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "horizontalOverflow": false,
+      "heroCTAsVisibleWithoutScroll": true
+    },
+    {
+      "width": 1536,
+      "height": 864,
+      "horizontalOverflow": false,
+      "heroCTAsVisibleWithoutScroll": true
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "horizontalOverflow": false,
+      "heroCTAsVisibleWithoutScroll": true
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "horizontalOverflow": false,
+      "heroCTAsVisibleWithoutScroll": true
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "horizontalOverflow": false,
+      "heroCTAsVisibleWithoutScroll": true
+    },
+    {
+      "width": 1440,
+      "height": 600,
+      "horizontalOverflow": false,
+      "heroCTAsVisibleWithoutScroll": true
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "horizontalOverflow": false,
+      "heroCTAsVisibleWithoutScroll": true
+    },
+    {
+      "width": 1024,
+      "height": 600,
+      "horizontalOverflow": false,
+      "heroCTAsVisibleWithoutScroll": true
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "horizontalOverflow": false,
+      "heroCTAsVisibleWithoutScroll": true
+    },
+    {
+      "width": 640,
+      "height": 480,
+      "horizontalOverflow": false,
+      "heroCTAsVisibleWithoutScroll": true
+    },
+    {
+      "width": 667,
+      "height": 375,
+      "horizontalOverflow": false,
+      "heroCTAsVisibleWithoutScroll": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "horizontalOverflow": false,
+      "heroCTAsVisibleWithoutScroll": true
+    },
+    {
+      "width": 375,
+      "height": 667,
+      "horizontalOverflow": false,
+      "heroCTAsVisibleWithoutScroll": true
+    },
+    {
+      "width": 360,
+      "height": 640,
+      "horizontalOverflow": false,
+      "heroCTAsVisibleWithoutScroll": true
+    },
+    {
+      "width": 360,
+      "height": 480,
+      "horizontalOverflow": false,
+      "heroCTAsVisibleWithoutScroll": true
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "horizontalOverflow": false,
+      "heroCTAsVisibleWithoutScroll": true
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "horizontalOverflow": false,
+      "heroCTAsVisibleWithoutScroll": true
+    }
+  ],
+  "errors": [],
+  "a11y": [],
+  "checks": [
+    "CV role/responsibilities, thesis, certifications, and education added; existing content retained; data annotation, resume links, and 1,300+ excluded",
+    "Community removed; hero caption is the personal Hanzi name; all three CTA rectangles are visible and hit-testable at scroll 0 across 17 viewport sizes",
+    "LinkedIn/Email/GitHub hero CTAs have correct targets and keyboard order; Quick view removed; project deep links and image dialog focus return work",
+    "Fixed ice-blue palette replaces color choices and film button; background film pauses behind dialogs and offscreen",
+    "Mobile menu focus/navigation and experience disclosures work",
+    "Reduced motion, JavaScript disabled, and blocked video retain usable content",
+    "Unique IDs, valid section anchors, and 640px reflow at 2x pixel density"
+  ],
+  "failedResponses": []
+}
