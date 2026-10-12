@@ -155,10 +155,7 @@
     const makePart = (element, delay = 0, kind = "body") => {
       element.dataset.motionPart = "";
       element.dataset.motionKind = kind;
-      element.style.setProperty(
-        "--entrance-y",
-        kind === "eyebrow" ? "12px" : "24px",
-      );
+      element.style.setProperty("--entrance-y", "24px");
       return { element, delay, kind };
     };
     function settle(group) {
@@ -185,7 +182,7 @@
             ? "translateY(105%)"
             : kind === "image"
               ? "translateY(22px) scale(0.985)"
-              : `translateY(${kind === "eyebrow" ? 12 : 24}px)`;
+              : "translateY(24px)";
         return element.animate(
           [
             { opacity: 0, transform: start },
@@ -221,17 +218,13 @@
     }
     document.querySelectorAll(".chapter-heading").forEach((root) => {
       const parts = [];
-      const eyebrow = root.querySelector(".eyebrow");
-      if (eyebrow) parts.push(makePart(eyebrow, 0, "eyebrow"));
       root.querySelectorAll(".text-line-inner").forEach((line, index) => {
         parts.push(makePart(line, 80 + index * tempo.stagger, "line"));
       });
       const glyph = root.querySelector(".chapter-glyph");
       if (glyph) parts.push(makePart(glyph, 160));
       root
-        .querySelectorAll(
-          ".section-intro, :scope > p:not(.eyebrow), .about-name",
-        )
+        .querySelectorAll(".section-intro, :scope > p, .about-name")
         .forEach((copy) => {
           parts.push(makePart(copy, 260));
         });
@@ -294,7 +287,7 @@
         entranceObserver.observe(group.root);
       }
     });
-    const heroParts = [makePart(hero.querySelector(".eyebrow"), 0, "eyebrow")];
+    const heroParts = [];
     hero.querySelectorAll(".text-line-inner").forEach((line, index) => {
       heroParts.push(makePart(line, index * tempo.stagger, "line"));
     });
