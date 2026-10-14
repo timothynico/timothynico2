@@ -11,6 +11,8 @@
   const menuButton = document.querySelector(".menu-button");
   const menu = document.getElementById("mobile-menu");
   const imageDialog = document.getElementById("image-dialog");
+  const projectDialog = document.getElementById("project-dialog");
+  let activeProject = null;
   const supportsDialog = typeof menu.showModal === "function";
   const syncModalState = () => {
     body.classList.toggle(
@@ -24,10 +26,45 @@
     dialog.showModal();
     syncModalState();
   }
+  function restoreProject() {
+    const panel = projectDialog.querySelector(".project-panel");
+    if (activeProject && panel) activeProject.append(panel);
+    activeProject = null;
+    projectDialog.removeAttribute("aria-labelledby");
+  }
+  function openProject(project) {
+    if (!supportsDialog) {
+      project.open = true;
+      return;
+    }
+    if (projectDialog.open) return;
+    if (activeProject) restoreProject();
+    const panel = project.querySelector(":scope > .project-panel");
+    activeProject = project;
+    projectDialog.querySelector(".project-dialog-body").append(panel);
+    projectDialog.setAttribute(
+      "aria-labelledby",
+      panel.querySelector("h3").id,
+    );
+    openDialog(projectDialog);
+    projectDialog.querySelector(".project-dialog-body").scrollTop = 0;
+  }
   if (supportsDialog) {
     body.classList.add("enhanced");
     menuButton.hidden = false;
     menuButton.addEventListener("click", () => openDialog(menu));
+    document.querySelectorAll(".project-feature").forEach((project) => {
+      const card = project.querySelector(".project-card");
+      card.setAttribute("aria-haspopup", "dialog");
+      card.setAttribute("aria-controls", "project-dialog");
+      card.addEventListener("click", (event) => {
+        event.preventDefault();
+        openProject(project);
+      });
+    });
+    projectDialog.addEventListener("close", () => {
+      if (!projectDialog.open) restoreProject();
+    });
     document.querySelectorAll("dialog").forEach((dialog) => {
       dialog
         .querySelectorAll("[data-close]")
@@ -134,7 +171,8 @@
     const target = document.getElementById(
       decodeURIComponent(window.location.hash.slice(1)),
     );
-    if (target?.matches("details")) target.open = true;
+    if (target?.matches(".project-feature")) openProject(target);
+    else if (target?.matches("details")) target.open = true;
   }
   window.addEventListener("hashchange", revealHash);
   revealHash();
@@ -147,6 +185,7 @@
       text: parseFloat(tokens.getPropertyValue("--motion-text")),
       body: parseFloat(tokens.getPropertyValue("--motion-body")),
       image: parseFloat(tokens.getPropertyValue("--motion-image")),
+      project: parseFloat(tokens.getPropertyValue("--motion-project")),
       stagger: parseFloat(tokens.getPropertyValue("--motion-stagger")),
       easing: tokens.getPropertyValue("--motion-ease").trim(),
     };
@@ -156,6 +195,12 @@
       element.dataset.motionPart = "";
       element.dataset.motionKind = kind;
       element.style.setProperty("--entrance-y", "24px");
+      if (kind.startsWith("project-")) {
+        element.style.setProperty(
+          "--entrance-transform",
+          "translate3d(var(--project-enter-x), 18px, 0)",
+        );
+      }
       return { element, delay, kind };
     };
     function settle(group) {
@@ -176,13 +221,21 @@
       group.root.dataset.motionState = "playing";
       group.root.classList.remove("motion-pending");
       group.root.classList.add("motion-playing");
+      const projectOffset =
+        parseFloat(
+          getComputedStyle(group.root).getPropertyValue("--project-enter-x"),
+        ) || 0;
       group.animations = group.parts.map(({ element, delay, kind }) => {
         const start =
-          kind === "line"
-            ? "translateY(105%)"
-            : kind === "image"
-              ? "translateY(22px) scale(0.985)"
-              : "translateY(24px)";
+          kind === "project-image"
+            ? `translate3d(${projectOffset}px, 18px, 0) scale(0.97)`
+            : kind.startsWith("project-")
+              ? `translate3d(${projectOffset * 0.6}px, 12px, 0)`
+              : kind === "line"
+                ? "translateY(105%)"
+                : kind === "image"
+                  ? "translateY(22px) scale(0.985)"
+                  : "translateY(24px)";
         return element.animate(
           [
             { opacity: 0, transform: start },
@@ -190,11 +243,13 @@
           ],
           {
             duration:
-              kind === "image"
-                ? tempo.image
-                : kind === "line"
-                  ? tempo.text
-                  : tempo.body,
+              kind.startsWith("project-")
+                ? tempo.project
+                : kind === "image"
+                  ? tempo.image
+                  : kind === "line"
+                    ? tempo.text
+                    : tempo.body,
             delay,
             easing: tempo.easing,
             fill: "both",
@@ -230,11 +285,19 @@
         });
       register(root, parts);
     });
+    document.querySelectorAll(".project-feature").forEach((root, index) => {
+      const delay = index % 2 === 0 ? 0 : 70;
+      register(root, [
+        makePart(root.querySelector(".project-image"), delay + 40, "project-image"),
+        makePart(root.querySelector(".project-card-title"), delay + 140, "project-copy"),
+      ]);
+    });
     document
       .querySelectorAll(
         ".project-image, .project-copy, .more-work-label, .project-row > summary, .experience-row > summary, .about-note, .skills-section, .skill-depth, .credentials, .recognitions, .contact-bottom",
       )
       .forEach((root) => {
+        if (root.closest(".project-feature, .project-dialog")) return;
         if (root.matches(".project-image, summary")) {
           register(root, [
             makePart(

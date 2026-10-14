@@ -1,0 +1,383 @@
+{
+  "samples": [
+    {
+      "width": 1440,
+      "id": "project-1",
+      "offset": -48,
+      "animations": [
+        {
+          "duration": 720,
+          "delay": 0,
+          "start": "translate3d(-28.8px, 12px, 0px)"
+        },
+        {
+          "duration": 720,
+          "delay": 40,
+          "start": "translate3d(-48px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "delay": 140,
+          "start": "translate3d(-28.8px, 12px, 0px)"
+        }
+      ],
+      "imageTransform": "matrix(0.992946, 0, 0, 0.992946, -11.2865, 4.23244)"
+    },
+    {
+      "width": 1440,
+      "id": "project-8",
+      "offset": 48,
+      "animations": [
+        {
+          "duration": 720,
+          "delay": 70,
+          "start": "translate3d(28.8px, 12px, 0px)"
+        },
+        {
+          "duration": 720,
+          "delay": 110,
+          "start": "translate3d(48px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "delay": 210,
+          "start": "translate3d(28.8px, 12px, 0px)"
+        }
+      ],
+      "imageTransform": "matrix(0.992946, 0, 0, 0.992946, 11.2865, 4.23244)"
+    },
+    {
+      "width": 1440,
+      "id": "project-7",
+      "offset": -48,
+      "animations": [
+        {
+          "duration": 720,
+          "delay": 0,
+          "start": "translate3d(-28.8px, 12px, 0px)"
+        },
+        {
+          "duration": 720,
+          "delay": 40,
+          "start": "translate3d(-48px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "delay": 140,
+          "start": "translate3d(-28.8px, 12px, 0px)"
+        }
+      ],
+      "imageTransform": "matrix(0.992946, 0, 0, 0.992946, -11.2865, 4.23244)"
+    },
+    {
+      "width": 1440,
+      "id": "project-3",
+      "offset": 48,
+      "animations": [
+        {
+          "duration": 720,
+          "delay": 70,
+          "start": "translate3d(28.8px, 12px, 0px)"
+        },
+        {
+          "duration": 720,
+          "delay": 110,
+          "start": "translate3d(48px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "delay": 210,
+          "start": "translate3d(28.8px, 12px, 0px)"
+        }
+      ],
+      "imageTransform": "matrix(0.992946, 0, 0, 0.992946, 11.2865, 4.23244)"
+    },
+    {
+      "width": 768,
+      "id": "project-1",
+      "offset": -28,
+      "animations": [
+        {
+          "duration": 720,
+          "delay": 0,
+          "start": "translate3d(-16.8px, 12px, 0px)"
+        },
+        {
+          "duration": 720,
+          "delay": 40,
+          "start": "translate3d(-28px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "delay": 140,
+          "start": "translate3d(-16.8px, 12px, 0px)"
+        }
+      ],
+      "imageTransform": "matrix(0.992946, 0, 0, 0.992946, -6.58379, 4.23244)"
+    },
+    {
+      "width": 768,
+      "id": "project-8",
+      "offset": 28,
+      "animations": [
+        {
+          "duration": 720,
+          "delay": 70,
+          "start": "translate3d(16.8px, 12px, 0px)"
+        },
+        {
+          "duration": 720,
+          "delay": 110,
+          "start": "translate3d(28px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "delay": 210,
+          "start": "translate3d(16.8px, 12px, 0px)"
+        }
+      ],
+      "imageTransform": "matrix(0.992946, 0, 0, 0.992946, 6.58379, 4.23244)"
+    },
+    {
+      "width": 768,
+      "id": "project-7",
+      "offset": -28,
+      "animations": [
+        {
+          "duration": 720,
+          "delay": 0,
+          "start": "translate3d(-16.8px, 12px, 0px)"
+        },
+        {
+          "duration": 720,
+          "delay": 40,
+          "start": "translate3d(-28px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "delay": 140,
+          "start": "translate3d(-16.8px, 12px, 0px)"
+        }
+      ],
+      "imageTransform": "matrix(0.992946, 0, 0, 0.992946, -6.58379, 4.23244)"
+    },
+    {
+      "width": 768,
+      "id": "project-3",
+      "offset": 28,
+      "animations": [
+        {
+          "duration": 720,
+          "delay": 70,
+          "start": "translate3d(16.8px, 12px, 0px)"
+        },
+        {
+          "duration": 720,
+          "delay": 110,
+          "start": "translate3d(28px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "delay": 210,
+          "start": "translate3d(16.8px, 12px, 0px)"
+        }
+      ],
+      "imageTransform": "matrix(0.992946, 0, 0, 0.992946, 6.58379, 4.23244)"
+    },
+    {
+      "width": 390,
+      "id": "project-1",
+      "offset": -20,
+      "animations": [
+        {
+          "duration": 720,
+          "delay": 0,
+          "start": "translate3d(-12px, 12px, 0px)"
+        },
+        {
+          "duration": 720,
+          "delay": 40,
+          "start": "translate3d(-20px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "delay": 140,
+          "start": "translate3d(-12px, 12px, 0px)"
+        }
+      ],
+      "imageTransform": "matrix(0.992946, 0, 0, 0.992946, -4.70271, 4.23244)"
+    },
+    {
+      "width": 390,
+      "id": "project-8",
+      "offset": 20,
+      "animations": [
+        {
+          "duration": 720,
+          "delay": 70,
+          "start": "translate3d(12px, 12px, 0px)"
+        },
+        {
+          "duration": 720,
+          "delay": 110,
+          "start": "translate3d(20px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "delay": 210,
+          "start": "translate3d(12px, 12px, 0px)"
+        }
+      ],
+      "imageTransform": "matrix(0.992946, 0, 0, 0.992946, 4.70271, 4.23244)"
+    },
+    {
+      "width": 390,
+      "id": "project-7",
+      "offset": -20,
+      "animations": [
+        {
+          "duration": 720,
+          "delay": 0,
+          "start": "translate3d(-12px, 12px, 0px)"
+        },
+        {
+          "duration": 720,
+          "delay": 40,
+          "start": "translate3d(-20px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "delay": 140,
+          "start": "translate3d(-12px, 12px, 0px)"
+        }
+      ],
+      "imageTransform": "matrix(0.992946, 0, 0, 0.992946, -4.70271, 4.23244)"
+    },
+    {
+      "width": 390,
+      "id": "project-3",
+      "offset": 20,
+      "animations": [
+        {
+          "duration": 720,
+          "delay": 70,
+          "start": "translate3d(12px, 12px, 0px)"
+        },
+        {
+          "duration": 720,
+          "delay": 110,
+          "start": "translate3d(20px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "delay": 210,
+          "start": "translate3d(12px, 12px, 0px)"
+        }
+      ],
+      "imageTransform": "matrix(0.992946, 0, 0, 0.992946, 4.70271, 4.23244)"
+    },
+    {
+      "width": 320,
+      "id": "project-1",
+      "offset": -20,
+      "animations": [
+        {
+          "duration": 720,
+          "delay": 0,
+          "start": "translate3d(-12px, 12px, 0px)"
+        },
+        {
+          "duration": 720,
+          "delay": 40,
+          "start": "translate3d(-20px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "delay": 140,
+          "start": "translate3d(-12px, 12px, 0px)"
+        }
+      ],
+      "imageTransform": "matrix(0.992946, 0, 0, 0.992946, -4.70271, 4.23244)"
+    },
+    {
+      "width": 320,
+      "id": "project-8",
+      "offset": 20,
+      "animations": [
+        {
+          "duration": 720,
+          "delay": 70,
+          "start": "translate3d(12px, 12px, 0px)"
+        },
+        {
+          "duration": 720,
+          "delay": 110,
+          "start": "translate3d(20px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "delay": 210,
+          "start": "translate3d(12px, 12px, 0px)"
+        }
+      ],
+      "imageTransform": "matrix(0.992946, 0, 0, 0.992946, 4.70271, 4.23244)"
+    },
+    {
+      "width": 320,
+      "id": "project-7",
+      "offset": -20,
+      "animations": [
+        {
+          "duration": 720,
+          "delay": 0,
+          "start": "translate3d(-12px, 12px, 0px)"
+        },
+        {
+          "duration": 720,
+          "delay": 40,
+          "start": "translate3d(-20px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "delay": 140,
+          "start": "translate3d(-12px, 12px, 0px)"
+        }
+      ],
+      "imageTransform": "matrix(0.992946, 0, 0, 0.992946, -4.70271, 4.23244)"
+    },
+    {
+      "width": 320,
+      "id": "project-3",
+      "offset": 20,
+      "animations": [
+        {
+          "duration": 720,
+          "delay": 70,
+          "start": "translate3d(12px, 12px, 0px)"
+        },
+        {
+          "duration": 720,
+          "delay": 110,
+          "start": "translate3d(20px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "delay": 210,
+          "start": "translate3d(12px, 12px, 0px)"
+        }
+      ],
+      "imageTransform": "matrix(0.992946, 0, 0, 0.992946, 4.70271, 4.23244)"
+    }
+  ],
+  "checks": [
+    "Opposite horizontal slide directions",
+    "Three staggered parts per card",
+    "720ms project entrance",
+    "No horizontal overflow before/during animation",
+    "One-time entrances release styles",
+    "Keyboard focus reveals pending content immediately",
+    "Live reduced-motion change reveals all parts",
+    "Content and disclosure work without JavaScript"
+  ],
+  "errors": []
+}

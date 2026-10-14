@@ -1,0 +1,190 @@
+{
+  "order": [
+    "project-1",
+    "project-8",
+    "project-7",
+    "project-3"
+  ],
+  "layouts": [
+    {
+      "width": 1440,
+      "documentWidth": 1440,
+      "cards": [
+        {
+          "id": "project-1",
+          "x": 72,
+          "y": -744.03125,
+          "width": 619.203125,
+          "imageY": -696.03125
+        },
+        {
+          "id": "project-8",
+          "x": 748.796875,
+          "y": -744.03125,
+          "width": 619.203125,
+          "imageY": -696.03125
+        },
+        {
+          "id": "project-7",
+          "x": 72,
+          "y": 272.546875,
+          "width": 619.203125,
+          "imageY": 320.546875
+        },
+        {
+          "id": "project-3",
+          "x": 748.796875,
+          "y": 272.546875,
+          "width": 619.203125,
+          "imageY": 320.546875
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "documentWidth": 1024,
+      "cards": [
+        {
+          "id": "project-1",
+          "x": 51.203125,
+          "y": -505.1875,
+          "width": 440.3125,
+          "imageY": -457.1875
+        },
+        {
+          "id": "project-8",
+          "x": 532.46875,
+          "y": -505.1875,
+          "width": 440.328125,
+          "imageY": -457.1875
+        },
+        {
+          "id": "project-7",
+          "x": 51.203125,
+          "y": 337.859375,
+          "width": 440.3125,
+          "imageY": 385.859375
+        },
+        {
+          "id": "project-3",
+          "x": 532.46875,
+          "y": 337.859375,
+          "width": 440.328125,
+          "imageY": 385.859375
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "documentWidth": 768,
+      "cards": [
+        {
+          "id": "project-1",
+          "x": 38.40625,
+          "y": -403.21875,
+          "width": 330.234375,
+          "imageY": -355.21875
+        },
+        {
+          "id": "project-8",
+          "x": 399.359375,
+          "y": -403.21875,
+          "width": 330.234375,
+          "imageY": -355.21875
+        },
+        {
+          "id": "project-7",
+          "x": 38.40625,
+          "y": 378.375,
+          "width": 330.234375,
+          "imageY": 426.375
+        },
+        {
+          "id": "project-3",
+          "x": 399.359375,
+          "y": 378.375,
+          "width": 330.234375,
+          "imageY": 426.375
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "documentWidth": 390,
+      "cards": [
+        {
+          "id": "project-1",
+          "x": 27.296875,
+          "y": -2075.484375,
+          "width": 335.390625,
+          "imageY": -2027.484375
+        },
+        {
+          "id": "project-8",
+          "x": 27.296875,
+          "y": -1364.625,
+          "width": 335.390625,
+          "imageY": -1316.625
+        },
+        {
+          "id": "project-7",
+          "x": 27.296875,
+          "y": -466.984375,
+          "width": 335.390625,
+          "imageY": -418.984375
+        },
+        {
+          "id": "project-3",
+          "x": 27.296875,
+          "y": 365.46875,
+          "width": 335.390625,
+          "imageY": 413.46875
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "documentWidth": 320,
+      "cards": [
+        {
+          "id": "project-1",
+          "x": 24,
+          "y": -2029.96875,
+          "width": 272,
+          "imageY": -1981.96875
+        },
+        {
+          "id": "project-8",
+          "x": 24,
+          "y": -1338.34375,
+          "width": 272,
+          "imageY": -1290.34375
+        },
+        {
+          "id": "project-7",
+          "x": 24,
+          "y": -394.75,
+          "width": 272,
+          "imageY": -346.75
+        },
+        {
+          "id": "project-3",
+          "x": 24,
+          "y": 389.671875,
+          "width": 272,
+          "imageY": 437.671875
+        }
+      ]
+    }
+  ],
+  "checks": [
+    "Requested DOM and visual order",
+    "Two equal columns and two aligned desktop rows",
+    "Aligned image frames",
+    "Single-column mobile order",
+    "Sequential 01?08 labels",
+    "Overview keyboard expansion/collapse without overflow",
+    "RuneCode map image enlargement"
+  ],
+  "errors": []
+}

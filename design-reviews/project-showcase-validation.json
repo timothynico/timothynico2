@@ -1,0 +1,323 @@
+{
+  "layouts": [
+    {
+      "width": 1440,
+      "height": 900,
+      "documentWidth": 1440,
+      "headerBottom": 84,
+      "cards": [
+        {
+          "id": "project-1",
+          "top": 210.734375,
+          "bottom": 494.484375,
+          "width": 530.65625,
+          "text": "AI Interview Website"
+        },
+        {
+          "id": "project-8",
+          "top": 210.734375,
+          "bottom": 494.484375,
+          "width": 749.34375,
+          "text": "RuneCode"
+        },
+        {
+          "id": "project-7",
+          "top": 510.484375,
+          "bottom": 780.71875,
+          "width": 749.328125,
+          "text": "Mandarin Quest"
+        },
+        {
+          "id": "project-3",
+          "top": 510.484375,
+          "bottom": 780.71875,
+          "width": 530.671875,
+          "text": "AI-Powered Chess Trainer"
+        }
+      ]
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "documentWidth": 1366,
+      "headerBottom": 84,
+      "cards": [
+        {
+          "id": "project-1",
+          "top": 207.71875,
+          "bottom": 478.15625,
+          "width": 502.90625,
+          "text": "AI Interview Website"
+        },
+        {
+          "id": "project-8",
+          "top": 207.71875,
+          "bottom": 478.15625,
+          "width": 710.484375,
+          "text": "RuneCode"
+        },
+        {
+          "id": "project-7",
+          "top": 494.15625,
+          "bottom": 751.703125,
+          "width": 710.46875,
+          "text": "Mandarin Quest"
+        },
+        {
+          "id": "project-3",
+          "top": 494.15625,
+          "bottom": 751.703125,
+          "width": 502.921875,
+          "text": "AI-Powered Chess Trainer"
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "documentWidth": 1280,
+      "headerBottom": 84,
+      "cards": [
+        {
+          "id": "project-1",
+          "top": 204.21875,
+          "bottom": 450.0625,
+          "width": 470.65625,
+          "text": "AI Interview Website"
+        },
+        {
+          "id": "project-8",
+          "top": 204.21875,
+          "bottom": 450.0625,
+          "width": 665.34375,
+          "text": "RuneCode"
+        },
+        {
+          "id": "project-7",
+          "top": 466.0625,
+          "bottom": 700.21875,
+          "width": 665.328125,
+          "text": "Mandarin Quest"
+        },
+        {
+          "id": "project-3",
+          "top": 466.0625,
+          "bottom": 700.21875,
+          "width": 470.671875,
+          "text": "AI-Powered Chess Trainer"
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 600,
+      "documentWidth": 1024,
+      "headerBottom": 84,
+      "cards": [
+        {
+          "id": "project-1",
+          "top": 193.765625,
+          "bottom": 378.140625,
+          "width": 374.65625,
+          "text": "AI Interview Website"
+        },
+        {
+          "id": "project-8",
+          "top": 193.765625,
+          "bottom": 378.140625,
+          "width": 530.9375,
+          "text": "RuneCode"
+        },
+        {
+          "id": "project-7",
+          "top": 394.140625,
+          "bottom": 569.765625,
+          "width": 530.921875,
+          "text": "Mandarin Quest"
+        },
+        {
+          "id": "project-3",
+          "top": 394.140625,
+          "bottom": 569.765625,
+          "width": 374.671875,
+          "text": "AI-Powered Chess Trainer"
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "documentWidth": 768,
+      "headerBottom": 84,
+      "cards": [
+        {
+          "id": "project-1",
+          "top": 183.328125,
+          "bottom": 467.078125,
+          "width": 278.65625,
+          "text": "AI Interview Website"
+        },
+        {
+          "id": "project-8",
+          "top": 183.328125,
+          "bottom": 467.078125,
+          "width": 396.53125,
+          "text": "RuneCode"
+        },
+        {
+          "id": "project-7",
+          "top": 483.078125,
+          "bottom": 753.3125,
+          "width": 396.515625,
+          "text": "Mandarin Quest"
+        },
+        {
+          "id": "project-3",
+          "top": 483.078125,
+          "bottom": 753.3125,
+          "width": 278.671875,
+          "text": "AI-Powered Chess Trainer"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "headerBottom": 68,
+      "cards": [
+        {
+          "id": "project-1",
+          "top": 183.8125,
+          "bottom": 392.78125,
+          "width": 161.6875,
+          "text": "AI Interview Website"
+        },
+        {
+          "id": "project-8",
+          "top": 183.8125,
+          "bottom": 392.78125,
+          "width": 161.703125,
+          "text": "RuneCode"
+        },
+        {
+          "id": "project-7",
+          "top": 404.78125,
+          "bottom": 603.8125,
+          "width": 161.6875,
+          "text": "Mandarin Quest"
+        },
+        {
+          "id": "project-3",
+          "top": 404.78125,
+          "bottom": 603.8125,
+          "width": 161.703125,
+          "text": "AI-Powered Chess Trainer"
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "documentWidth": 320,
+      "headerBottom": 68,
+      "cards": [
+        {
+          "id": "project-1",
+          "top": 194.78125,
+          "bottom": 372,
+          "width": 130,
+          "text": "AI Interview Website"
+        },
+        {
+          "id": "project-8",
+          "top": 194.78125,
+          "bottom": 372,
+          "width": 130,
+          "text": "RuneCode"
+        },
+        {
+          "id": "project-7",
+          "top": 384,
+          "bottom": 552.765625,
+          "width": 130,
+          "text": "Mandarin Quest"
+        },
+        {
+          "id": "project-3",
+          "top": 384,
+          "bottom": 552.765625,
+          "width": 130,
+          "text": "AI-Powered Chess Trainer"
+        }
+      ]
+    }
+  ],
+  "motions": [
+    {
+      "id": "project-1",
+      "parts": [
+        {
+          "duration": 720,
+          "start": "translate3d(-48px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "start": "translate3d(-28.8px, 12px, 0px)"
+        }
+      ]
+    },
+    {
+      "id": "project-8",
+      "parts": [
+        {
+          "duration": 720,
+          "start": "translate3d(48px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "start": "translate3d(28.8px, 12px, 0px)"
+        }
+      ]
+    },
+    {
+      "id": "project-7",
+      "parts": [
+        {
+          "duration": 720,
+          "start": "translate3d(-48px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "start": "translate3d(-28.8px, 12px, 0px)"
+        }
+      ]
+    },
+    {
+      "id": "project-3",
+      "parts": [
+        {
+          "duration": 720,
+          "start": "translate3d(48px, 18px, 0px) scale(0.97)"
+        },
+        {
+          "duration": 720,
+          "start": "translate3d(28.8px, 12px, 0px)"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    "Four image/title cards fit in one screen at all tested sizes",
+    "Asymmetric desktop grid; mobile 2x2",
+    "All four complete details open with keyboard and restore after closing",
+    "Descriptions, technology tags, accuracy limits and Live Demo links retained",
+    "RuneCode editor image enlargement above project dialog",
+    "Escape, close button, backdrop, focus return and modal body scrolling",
+    "Native keyboard and pointer details work without JavaScript",
+    "Direct project hashes open dialogs",
+    "Image and title slide-in animations; focus reveals cards immediately",
+    "Live reduced-motion changes settle all card parts"
+  ],
+  "errors": []
+}

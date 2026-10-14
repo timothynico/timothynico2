@@ -152,14 +152,45 @@
           </div>
         </div>
         <div class="featured-projects">
-          <article class="project-feature feature-1" id="project-1">
-            <div class="project-top">
+          <details class="project-feature feature-1" id="project-1">
+            <summary class="project-card" aria-labelledby="project-1-card-title">
+              <span class="project-image">
+                <img
+                alt="AI Interview Website interface"
+                decoding="async"
+                height="606"
+                loading="lazy"
+                src="assets/images/interview-website.png"
+                width="1174"
+              />
+              </span>
+              <span class="project-card-title">
+                <h3 id="project-1-card-title">AI Interview Website</h3>
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M5 19 19 5M5 5h14v14"></path>
+                </svg>
+              </span>
+            </summary>
+            <div class="project-panel">
+              <div class="project-top">
               <span class="index">01 / SELECTED WORK</span
               ><span class="project-kind">Multimodal AI</span>
             </div>
-            <a
+
+              <div class="project-copy">
+              <h3 id="project-1-title">AI Interview Website</h3>
+              <p>
+                An interview system combining language, speech, and video
+                analysis with retrieval against job criteria and candidate
+                documents.
+              </p>
+              <div class="tags">
+                <span>n8n</span><span>LLM Integration</span><span>RAG</span
+                ><span>Speech-to-Text</span><span>PostgreSQL</span>
+              </div>
+              <a
               aria-label="Enlarge AI Interview Website screenshot"
-              class="project-image image-trigger"
+              class="project-modal-preview row-image image-trigger"
               data-caption="AI Interview Website"
               data-image="assets/images/interview-website.png"
               href="assets/images/interview-website.png"
@@ -178,21 +209,8 @@
                   <path d="M5 19 19 5M5 5h14v14"></path></svg
               ></span>
             </a>
-            <div class="project-copy">
-              <h3>AI Interview Website</h3>
-              <p>
-                An interview system combining language, speech, and video
-                analysis with retrieval against job criteria and candidate
-                documents.
-              </p>
-              <div class="tags">
-                <span>n8n</span><span>LLM Integration</span><span>RAG</span
-                ><span>Speech-to-Text</span><span>PostgreSQL</span>
-              </div>
-              <details class="project-detail">
-                <summary>
-                  Project overview <span aria-hidden="true">+</span>
-                </summary>
+              <section class="project-overview">
+                  <h4>Project overview</h4>
                 <div class="detail-body">
                   <p class="index">OCT–DEC 2025</p>
                   <ul class="project-points">
@@ -216,17 +234,296 @@
                     </li>
                   </ul>
                 </div>
-              </details>
+              </section>
             </div>
-          </article>
-          <article class="project-feature feature-2" id="project-3">
-            <div class="project-top">
+            </div>
+          </details>
+          <details class="project-feature feature-4" id="project-8">
+            <summary class="project-card" aria-labelledby="project-8-card-title">
+              <span class="project-image">
+                <img
+                alt="RuneCode pixel-art adventure map showing Starter Village, Data Structure Forest, SQL Archive City, Data Mountains, and Application Workshop"
+                decoding="async"
+                height="1000"
+                loading="lazy"
+                src="assets/images/runecode-map.png"
+                width="1440"
+              />
+              </span>
+              <span class="project-card-title">
+                <h3 id="project-8-card-title">RuneCode</h3>
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M5 19 19 5M5 5h14v14"></path>
+                </svg>
+              </span>
+            </summary>
+            <div class="project-panel">
+              <div class="project-top">
               <span class="index">02 / SELECTED WORK</span
+              ><span class="project-kind">Interactive Learning · Web Application</span>
+            </div>
+
+              <div class="project-copy">
+              <h3 id="project-8-title">RuneCode — Gamified Python &amp; SQL Learning</h3>
+              <p>
+                A browser-based coding adventure that teaches Python and SQL
+                through a pixel-art RPG. Learners complete 36 quests across five
+                regions, write and execute real code, explore step-by-step
+                Python visualizations, and unlock rewards as they progress.
+              </p>
+              <div class="tags">
+                <span>React</span><span>TypeScript</span><span>Tailwind CSS</span
+                ><span>WebAssembly</span><span>Supabase</span><span>Vercel</span>
+              </div>
+              <a
+                class="text-link project-link"
+                href="https://coding-learning-timothy.vercel.app/"
+                rel="noopener noreferrer"
+                target="_blank"
+                >Live Demo
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M5 19 19 5M5 5h14v14"></path></svg
+              ></a>
+              <a
+              aria-label="Enlarge RuneCode adventure map screenshot"
+              class="project-modal-preview row-image image-trigger"
+              data-caption="RuneCode — Adventure map across five regions"
+              data-image="assets/images/runecode-map.png"
+              href="assets/images/runecode-map.png"
+            >
+              <img
+                alt="RuneCode pixel-art adventure map showing Starter Village, Data Structure Forest, SQL Archive City, Data Mountains, and Application Workshop"
+                decoding="async"
+                height="1000"
+                loading="lazy"
+                src="assets/images/runecode-map.png"
+                width="1440"
+              />
+              <span class="image-corner"
+                >View image
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M5 19 19 5M5 5h14v14"></path></svg
+              ></span>
+            </a>
+              <section class="project-overview">
+                  <h4>Project overview</h4>
+                <div class="detail-body">
+                  <p>
+                    Built an interactive learning platform that combines
+                    structured programming lessons with an RPG progression
+                    system, covering Python fundamentals, SQL queries, pandas,
+                    and small interactive applications.
+                  </p>
+                  <p>
+                    Implemented browser-based Python execution using Pyodide and
+                    SQL execution using SQLite WebAssembly, allowing learners to
+                    run code without installing Python or setting up a database.
+                  </p>
+                  <p>
+                    Developed an integrated code editor, automated answer
+                    checking, execution visualizations, contextual hints, and
+                    bilingual English–Indonesian learning materials.
+                  </p>
+                  <p>
+                    Added persistent progress storage using IndexedDB, JSON
+                    backup import/export, and optional Supabase email
+                    authentication with private, manual cloud backups. Deployed
+                    the application on Vercel.
+                  </p>
+                  <h4>Technical details</h4>
+                  <p>
+                    Designed an isolated execution sandbox using browser workers,
+                    restricted network access, verified runtime assets, and
+                    execution timeouts. Validated all 36 reference solutions
+                    through automated browser tests, including rejection of
+                    incorrect answers and recovery from runtime failures.
+                  </p>
+                  <figure class="project-detail-figure">
+                    <a
+                      aria-label="Enlarge RuneCode editor and successful Python output screenshot"
+                      class="row-image project-detail-image image-trigger"
+                      data-caption="RuneCode — Python editor with successful output"
+                      data-image="assets/images/runecode-editor.png"
+                      href="assets/images/runecode-editor.png"
+                    >
+                      <img
+                        alt="RuneCode Python editor running nama = &quot;Adventurer&quot; and print(nama), with Adventurer displayed in the output panel"
+                        decoding="async"
+                        height="1000"
+                        loading="lazy"
+                        src="assets/images/runecode-editor.png"
+                        width="1440"
+                      />
+                      <span class="image-corner"
+                        >View image
+                        <svg aria-hidden="true" viewBox="0 0 24 24">
+                          <path d="M5 19 19 5M5 5h14v14"></path></svg
+                      ></span>
+                    </a>
+                    <figcaption>Python editor with successful code output.</figcaption>
+                  </figure>
+                </div>
+              </section>
+
+            </div>
+            </div>
+          </details>
+          <details class="project-feature feature-3" id="project-7">
+            <summary class="project-card" aria-labelledby="project-7-card-title">
+              <span class="project-image">
+                <img
+                alt="Mandarin Quest Today dashboard with the Bamboo Lane story and Word Rush, Match Maker, and Sentence Forge mini-games"
+                decoding="async"
+                height="1000"
+                loading="lazy"
+                src="assets/images/mandarin-quest.png"
+                width="1440"
+              />
+              </span>
+              <span class="project-card-title">
+                <h3 id="project-7-card-title">Mandarin Quest</h3>
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M5 19 19 5M5 5h14v14"></path>
+                </svg>
+              </span>
+            </summary>
+            <div class="project-panel">
+              <div class="project-top">
+              <span class="index">03 / SELECTED WORK</span
+              ><span class="project-kind">Interactive Learning Platform</span>
+            </div>
+
+              <div class="project-copy">
+              <h3 id="project-7-title">Mandarin Quest</h3>
+              <p>
+                A gamified Mandarin learning platform combining HSK 1–4
+                vocabulary, story missions, guided conversations, and mini-games
+                with spaced review and progress tracking.
+              </p>
+              <div class="tags">
+                <span>JavaScript</span><span>HTML</span><span>CSS</span
+                ><span>Vite</span><span>Supabase</span><span>PostgreSQL</span
+                ><span>Web Speech API</span>
+              </div>
+              <a
+                class="text-link project-link"
+                href="https://mandarin-learning-timothy.vercel.app/"
+                rel="noopener noreferrer"
+                target="_blank"
+                >Live Demo
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M5 19 19 5M5 5h14v14"></path></svg
+              ></a>
+              <a
+              aria-label="Enlarge Mandarin Quest screenshot"
+              class="project-modal-preview row-image image-trigger"
+              data-caption="Mandarin Quest — Today, Bamboo Lane and mini-games"
+              data-image="assets/images/mandarin-quest.png"
+              href="assets/images/mandarin-quest.png"
+            >
+              <img
+                alt="Mandarin Quest Today dashboard with the Bamboo Lane story and Word Rush, Match Maker, and Sentence Forge mini-games"
+                decoding="async"
+                height="1000"
+                loading="lazy"
+                src="assets/images/mandarin-quest.png"
+                width="1440"
+              />
+              <span class="image-corner"
+                >View image
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M5 19 19 5M5 5h14v14"></path></svg
+              ></span>
+            </a>
+              <section class="project-overview">
+                  <h4>Project overview</h4>
+                <div class="detail-body">
+                  <p>
+                    Built a responsive Mandarin learning application with 70
+                    chapters, 250 learning quests, and 1,193 vocabulary entries
+                    organized around HSK Standard Course 1–4 topics. Learners
+                    practice Chinese characters, pinyin, word meanings, and
+                    sentence construction through short lessons and interactive
+                    challenges.
+                  </p>
+                  <p>
+                    Created a branching HSK 1 story campaign with three connected
+                    missions, remembered choices, and resumable checkpoints.
+                    Added 12 guided conversation scenes for listening
+                    comprehension, shadowing, and roleplay, using browser speech
+                    synthesis, microphone recording, and speech recognition
+                    where supported. Speech recognition checks guided-answer
+                    transcripts; it does not assess pronunciation or tones.
+                  </p>
+                  <p>
+                    Implemented spaced vocabulary review, daily goals, XP,
+                    streaks, achievements, and unlockable scenery. Built guest
+                    progress storage with localStorage and Supabase integration
+                    for email authentication, PostgreSQL-backed content, and
+                    account progress synchronization, including pending-save
+                    retries and revision conflict handling. Supabase integration
+                    is available in the code; production cloud configuration has
+                    not been verified.
+                  </p>
+                  <h4>Key features</h4>
+                  <ul class="project-points">
+                    <li>HSK 1–4 learning content: 70 chapters, 250 quests, and 1,193 vocabulary entries.</li>
+                    <li>Three branching story missions with alternative situations.</li>
+                    <li>Twelve guided conversation scenes with listening, shadowing, and roleplay.</li>
+                    <li>Three mini-games: Word Rush, Match Maker, and Sentence Forge.</li>
+                    <li>Spaced review, daily goals, rewards, and learning progress tracking.</li>
+                    <li>Responsive desktop/mobile interface with keyboard controls and reduced-motion support.</li>
+                  </ul>
+                  <h4>Engineering details</h4>
+                  <p>
+                    Row-Level Security for account data, revision-based
+                    synchronization, and automated unit, database, and
+                    Playwright browser tests.
+                  </p>
+                </div>
+              </section>
+
+            </div>
+            </div>
+          </details>
+          <details class="project-feature feature-2" id="project-3">
+            <summary class="project-card" aria-labelledby="project-3-card-title">
+              <span class="project-image">
+                <img
+                alt="AI-Powered Chess Trainer interface"
+                decoding="async"
+                height="788"
+                loading="lazy"
+                src="assets/images/chess-trainer.png"
+                width="1131"
+              />
+              </span>
+              <span class="project-card-title">
+                <h3 id="project-3-card-title">AI-Powered Chess Trainer</h3>
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M5 19 19 5M5 5h14v14"></path>
+                </svg>
+              </span>
+            </summary>
+            <div class="project-panel">
+              <div class="project-top">
+              <span class="index">04 / SELECTED WORK</span
               ><span class="project-kind">Conversational AI</span>
             </div>
-            <a
+
+              <div class="project-copy">
+              <h3 id="project-3-title">AI-Powered Chess Trainer</h3>
+              <p>
+                A chess coach you can talk to. Gemini meets Stockfish, with
+                voice in both directions.
+              </p>
+              <div class="tags">
+                <span>LLM + Tool Use</span><span>Speech-to-Text</span
+                ><span>Text-to-Speech</span>
+              </div>
+              <a
               aria-label="Enlarge AI-Powered Chess Trainer screenshot"
-              class="project-image image-trigger"
+              class="project-modal-preview row-image image-trigger"
               data-caption="AI-Powered Chess Trainer"
               data-image="assets/images/chess-trainer.png"
               href="assets/images/chess-trainer.png"
@@ -245,20 +542,8 @@
                   <path d="M5 19 19 5M5 5h14v14"></path></svg
               ></span>
             </a>
-            <div class="project-copy">
-              <h3>AI-Powered Chess Trainer</h3>
-              <p>
-                A chess coach you can talk to. Gemini meets Stockfish, with
-                voice in both directions.
-              </p>
-              <div class="tags">
-                <span>LLM + Tool Use</span><span>Speech-to-Text</span
-                ><span>Text-to-Speech</span>
-              </div>
-              <details class="project-detail">
-                <summary>
-                  Project overview <span aria-hidden="true">+</span>
-                </summary>
+              <section class="project-overview">
+                  <h4>Project overview</h4>
                 <div class="detail-body">
                   <p>
                     A voice-interactive chess coach pairing Gemini AI with
@@ -266,13 +551,14 @@
                     and strategic insight based on the current board position.
                   </p>
                 </div>
-              </details>
+              </section>
             </div>
-          </article>
+            </div>
+          </details>
         </div>
         <div class="more-work">
           <div class="more-work-label">
-            <span class="index">MORE TO EXPLORE / 03–06</span
+            <span class="index">MORE TO EXPLORE / 05–08</span
             ><a
               class="text-link"
               href="https://github.com/timothynico"
@@ -285,7 +571,7 @@
           </div>
           <details class="project-row" id="project-6">
             <summary>
-              <span class="index">03</span>
+              <span class="index">05</span>
               <h3>LLM-Driven Time Series Forecasting &amp; Code Evaluation</h3>
               <span class="row-category">LLM Research</span
               ><span aria-hidden="true" class="expand">+</span>
@@ -342,7 +628,7 @@
           </details>
           <details class="project-row" id="project-2">
             <summary>
-              <span class="index">04</span>
+              <span class="index">06</span>
               <h3>RAG Voicebot with Speaker Identification for RBAC</h3>
               <span class="row-category">RAG LLM</span
               ><span aria-hidden="true" class="expand">+</span>
@@ -379,7 +665,7 @@
           </details>
           <details class="project-row" id="project-4">
             <summary>
-              <span class="index">05</span>
+              <span class="index">07</span>
               <h3>Dog Breed Detection with YOLOv8</h3>
               <span class="row-category">Computer Vision</span
               ><span aria-hidden="true" class="expand">+</span>
@@ -414,7 +700,7 @@
           </details>
           <details class="project-row" id="project-5">
             <summary>
-              <span class="index">06</span>
+              <span class="index">08</span>
               <h3>Film Review &amp; Admin Platform</h3>
               <span class="row-category">Laravel</span
               ><span aria-hidden="true" class="expand">+</span>
@@ -767,8 +1053,19 @@
                   alt=""
                   decoding="async"
                   loading="lazy"
-                  src="assets/images/pgsql.png"
+                  src="assets/images/postgresql-elephant.png"
                 /><span>SQL</span>
+              </li>
+              <li>
+                <img
+                  alt=""
+                  class="ollama-logo"
+                  decoding="async"
+                  height="26"
+                  loading="lazy"
+                  src="assets/images/ollama.png"
+                  width="26"
+                /><span>Ollama</span>
               </li>
             </ul>
             <h3 class="small-heading language-heading">Languages</h3>
@@ -796,7 +1093,7 @@
               <dd>
                 LLM fine-tuning (LoRA, QLoRA), prompt engineering, RAG, LLM
                 evaluation, TensorFlow, scikit-learn, XGBoost, ARIMA, LSTM,
-                YOLOv8, Gemini API
+                YOLOv8, Gemini API, Ollama
               </dd>
             </div>
             <div>
@@ -1074,6 +1371,19 @@
       <p class="menu-note">
         Software, intelligence,<br />and a little curiosity.
       </p>
+    </dialog>
+    <dialog aria-label="Project details" class="project-dialog" id="project-dialog">
+      <div class="project-dialog-bar">
+        <span class="index">PROJECT DETAILS</span>
+        <button
+          aria-label="Close project details"
+          class="dialog-close"
+          data-close=""
+          type="button"
+          autofocus
+        >&#215;</button>
+      </div>
+      <div class="project-dialog-body"></div>
     </dialog>
     <dialog
       aria-labelledby="image-caption"
