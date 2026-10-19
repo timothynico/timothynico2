@@ -181,13 +181,20 @@
   // All source content is visible without JS. Hero CTAs never enter a queue.
   if ("IntersectionObserver" in window && "animate" in Element.prototype) {
     const tokens = getComputedStyle(document.documentElement);
+    // An unavailable CSS token must not abort an entrance and hide later cards.
+    const duration = (token, fallback) => {
+      const value = parseFloat(tokens.getPropertyValue(token));
+      return Number.isFinite(value) ? value : fallback;
+    };
     const tempo = {
-      text: parseFloat(tokens.getPropertyValue("--motion-text")),
-      body: parseFloat(tokens.getPropertyValue("--motion-body")),
-      image: parseFloat(tokens.getPropertyValue("--motion-image")),
-      project: parseFloat(tokens.getPropertyValue("--motion-project")),
-      stagger: parseFloat(tokens.getPropertyValue("--motion-stagger")),
-      easing: tokens.getPropertyValue("--motion-ease").trim(),
+      text: duration("--motion-text", 780),
+      body: duration("--motion-body", 650),
+      image: duration("--motion-image", 900),
+      project: duration("--motion-project", 720),
+      stagger: duration("--motion-stagger", 110),
+      easing:
+        tokens.getPropertyValue("--motion-ease").trim() ||
+        "cubic-bezier(0.22, 1, 0.36, 1)",
     };
     const groups = new Map();
     let entranceObserver;
@@ -350,6 +357,32 @@
         entranceObserver.observe(group.root);
       }
     });
+    // Mobile browsers can delay intersection callbacks for closed <details>.
+    // Check the four visible cards on scroll too, so an already-loaded preview
+    // never stays hidden waiting for another intersection notification.
+    const pendingProjects = new Set(
+      [...groups.values()].filter((group) =>
+        group.root.matches(".project-feature"),
+      ),
+    );
+    function revealVisibleProjects() {
+      pendingProjects.forEach((group) => {
+        if (group.state === "idle") {
+          const rect = group.root.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) play(group);
+        }
+        if (group.state !== "idle") pendingProjects.delete(group);
+      });
+      if (!pendingProjects.size) {
+        window.removeEventListener("scroll", revealVisibleProjects);
+        window.removeEventListener("resize", revealVisibleProjects);
+        window.removeEventListener("pageshow", revealVisibleProjects);
+      }
+    }
+    window.addEventListener("scroll", revealVisibleProjects, { passive: true });
+    window.addEventListener("resize", revealVisibleProjects, { passive: true });
+    window.addEventListener("pageshow", revealVisibleProjects);
+    revealVisibleProjects();
     const heroParts = [];
     hero.querySelectorAll(".text-line-inner").forEach((line, index) => {
       heroParts.push(makePart(line, index * tempo.stagger, "line"));

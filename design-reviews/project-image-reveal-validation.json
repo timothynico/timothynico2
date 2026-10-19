@@ -1,0 +1,23 @@
+{
+  "checks": [
+    "chromium 375x667: all four thumbnails appear without scrolling beyond Work",
+    "chromium 390x844: all four thumbnails appear without scrolling beyond Work",
+    "chromium: RuneCode and Chess detail dialogs open and restore correctly",
+    "chromium 844x390: all four thumbnails appear without scrolling beyond Work",
+    "chromium 1440x900: all four thumbnails appear without scrolling beyond Work",
+    "chromium: missed observer regression passed",
+    "chromium: missing tokens regression passed",
+    "chromium: reduced regression passed",
+    "chromium: thumbnails remain visible without JavaScript",
+    "webkit 375x667: all four thumbnails appear without scrolling beyond Work",
+    "webkit 390x844: all four thumbnails appear without scrolling beyond Work",
+    "webkit: RuneCode and Chess detail dialogs open and restore correctly",
+    "webkit 844x390: all four thumbnails appear without scrolling beyond Work",
+    "webkit 1440x900: all four thumbnails appear without scrolling beyond Work",
+    "webkit: missed observer regression passed",
+    "webkit: missing tokens regression passed",
+    "webkit: reduced regression passed",
+    "webkit: thumbnails remain visible without JavaScript"
+  ],
+  "errors": []
+}
